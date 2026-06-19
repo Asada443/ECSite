@@ -38,7 +38,7 @@ namespace ShoppingSite_a
 
         protected void btnProductManage_Click(object sender, EventArgs e)
         {
-            Response.Redirect("~/Views/Admin/ProductList.aspx");
+            Response.Redirect("~/Views/Admin/ProductManage.aspx");
         }
 
     }

@@ -63,16 +63,28 @@ namespace ShoppingSite_a
                     /* カートから来た場合は、ここ（購入確認画面）にジャンプ */
                     Response.Redirect(returnUrl);
                 }
+              
                 else
                 {
-                    // 普通にログインした場合はマイページへ
-                    Response.Redirect("~/Views/Member/Home.aspx");
+                    // 権限（ROLE）によって遷移先を切り替える
+                    if (member.Role == "Admin")
+                    {
+                        // 管理者の場合は、商品管理一覧画面へ直行！
+                        Response.Redirect("~/Views/Admin/ProductManage.aspx");
+                    }
+                    else
+                    {
+                        // 一般ユーザーの場合は、新しく決めたトップページ（Top.aspx）へ
+                        Response.Redirect("~/Views/Home/Top.aspx");
+                    }
                 }
             }
             else
             {
                 Response.Redirect("~/Views/Login/Error.aspx");
             }
+
+
         }
     }
 }

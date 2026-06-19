@@ -104,7 +104,8 @@ namespace ShoppingSite_a.DAO
                         {
                             OrderId = (int)reader["ORDER_ID"],
                             TotalPrice = (int)reader["TOTAL_PRICE"],
-                            Tax = (int)reader["TAX"]
+                            Tax = (int)reader["TAX"],
+                            CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])
                         };
                     }
                 }
@@ -137,5 +138,47 @@ namespace ShoppingSite_a.DAO
             }
             return order;
         }
+
+        /* 購入履歴画面用：ログイン中の会員IDに紐づく注文履歴一覧を取得する（新しい順）*/
+        public List<OrderDTO> GetOrderHistoryByMemberId(string memberId)
+        {
+            List<OrderDTO> historyList = new List<OrderDTO>();
+
+            // T_ORDER テーブルから指定した会員のデータを取得するSQL
+            string sql = @"
+                SELECT ORDER_ID, MEMBER_ID, TOTAL_PRICE, TAX, CREATED_AT 
+                FROM T_ORDER 
+                WHERE MEMBER_ID = @MemberId 
+                ORDER BY CREATED_AT DESC";
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    // 会員IDをバインド
+                    cmd.Parameters.AddWithValue("@MemberId", memberId);
+
+                    conn.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            OrderDTO order = new OrderDTO
+                            {
+                                OrderId = Convert.ToInt32(reader["ORDER_ID"]),
+                                MemberId = reader["MEMBER_ID"].ToString(),
+                                TotalPrice = Convert.ToInt32(reader["TOTAL_PRICE"]),
+                                Tax = Convert.ToInt32(reader["TAX"]),
+                                CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])
+                            };
+                            historyList.Add(order);
+                        }
+                    }
+                }
+            }
+            return historyList;
+        }
+
     }
+
 }

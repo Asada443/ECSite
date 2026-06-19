@@ -101,7 +101,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="About.aspx" />
-    <Content Include="Views\Admin\ProductList.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
@@ -123,6 +122,9 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Views\Admin\ProductEdit.aspx" />
+    <Content Include="Views\Admin\ProductManage.aspx" />
+    <Content Include="Views\Admin\ProductRegister.aspx" />
     <Content Include="Views\Cart\Cart.aspx" />
     <Content Include="Views\Home\Top.aspx" />
     <Content Include="Views\Login\Error.aspx" />
@@ -197,6 +199,8 @@
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Views\Order\OrderComplete.aspx" />
     <Content Include="Views\Order\OrderConfirm.aspx" />
+    <Content Include="Views\Order\OrderHistoryDetail.aspx" />
+    <Content Include="Views\Order\OrderHistory.aspx" />
     <Content Include="Views\Product\ProductDetail.aspx" />
     <Content Include="Views\Product\ProductList.aspx" />
     <Content Include="Web.config" />
@@ -204,18 +208,14 @@
     <Content Include="Site.Mobile.Master" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Common\AdminBasePage.cs">
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
     <Compile Include="DAO\OrderDAO.cs" />
     <Compile Include="DAO\ProductDAO.cs" />
     <Compile Include="DTO\CartItem.cs" />
     <Compile Include="DTO\OrderDTO.cs" />
     <Compile Include="DTO\ProductDTO.cs" />
-    <Compile Include="Views\Admin\ProductList.aspx.cs">
-      <DependentUpon>ProductList.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Views\Admin\ProductList.aspx.designer.cs">
-      <DependentUpon>ProductList.aspx</DependentUpon>
-    </Compile>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="About.aspx.cs">
       <DependentUpon>About.aspx</DependentUpon>
@@ -246,6 +246,27 @@
     <Compile Include="DTO\MemberDTO.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ProductEdit.aspx.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ProductEdit.aspx.designer.cs">
+      <DependentUpon>ProductEdit.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ProductManage.aspx.cs">
+      <DependentUpon>ProductManage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ProductManage.aspx.designer.cs">
+      <DependentUpon>ProductManage.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Admin\ProductRegister.aspx.cs">
+      <DependentUpon>ProductRegister.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Admin\ProductRegister.aspx.designer.cs">
+      <DependentUpon>ProductRegister.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Cart\Cart.aspx.cs">
       <DependentUpon>Cart.aspx</DependentUpon>
@@ -387,6 +408,20 @@
     </Compile>
     <Compile Include="Views\Order\OrderConfirm.aspx.designer.cs">
       <DependentUpon>OrderConfirm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderHistoryDetail.aspx.cs">
+      <DependentUpon>OrderHistoryDetail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Order\OrderHistoryDetail.aspx.designer.cs">
+      <DependentUpon>OrderHistoryDetail.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Order\OrderHistory.aspx.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Views\Order\OrderHistory.aspx.designer.cs">
+      <DependentUpon>OrderHistory.aspx</DependentUpon>
     </Compile>
     <Compile Include="Views\Product\ProductDetail.aspx.cs">
       <DependentUpon>ProductDetail.aspx</DependentUpon>

@@ -1,10 +1,11 @@
 ﻿using System;
+using ShoppingSite_a.Common;
 using ShoppingSite_a.DAO;
 using ShoppingSite_a.DTO;
 
 namespace ShoppingSite_a.Views.Order
 {
-    public partial class OrderComplete : System.Web.UI.Page
+    public partial class OrderComplete : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -50,7 +51,7 @@ namespace ShoppingSite_a.Views.Order
         protected void btnHistory_Click(object sender, EventArgs e)
         {
             
-            Response.Redirect("~/Views/Home/Top.aspx");
+            Response.Redirect("OrderHistory.aspx");
         }
     }
 }
