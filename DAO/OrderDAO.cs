@@ -27,9 +27,9 @@ namespace ShoppingSite_a.DAO
                 try
                 {
                     // 1. T_ORDER テーブルに注文の親情報を登録
-                    // SQLのカラム名を MEMBER_ID ➔ USER_ID に変更
+                    // SQLのカラム名を MEMBER_ID ➔ MEMBER_ID に変更
                     string orderSql = @"
-                        INSERT INTO T_ORDER (USER_ID, TOTAL_PRICE, TAX, CREATED_AT)
+                        INSERT INTO T_ORDER (MEMBER_ID, TOTAL_PRICE, TAX, CREATED_AT)
                         VALUES (@UserId, @TotalPrice, @Tax, GETDATE());
                         SELECT SCOPE_IDENTITY();";
 
@@ -103,8 +103,8 @@ namespace ShoppingSite_a.DAO
                         order = new OrderDTO
                         {
                             OrderId = (int)reader["ORDER_ID"],
-                            // データベースから取得する部分も USER_ID を見るように修正
-                            UserId = reader["USER_ID"].ToString(),
+                            // データベースから取得する部分も MEMBER_ID を見るように修正
+                            UserId = reader["MEMBER_ID"].ToString(),
                             TotalPrice = (int)reader["TOTAL_PRICE"],
                             Tax = (int)reader["TAX"],
                             CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])
@@ -146,11 +146,11 @@ namespace ShoppingSite_a.DAO
         {
             List<OrderDTO> historyList = new List<OrderDTO>();
 
-            //  SQLのカラム名を MEMBER_ID ➔ USER_ID に変更！
+            //  SQLのカラム名を MEMBER_ID ➔ MEMBER_ID に変更！
             string sql = @"
-                SELECT ORDER_ID, USER_ID, TOTAL_PRICE, TAX, CREATED_AT 
+                SELECT ORDER_ID, MEMBER_ID, TOTAL_PRICE, TAX, CREATED_AT 
                 FROM T_ORDER 
-                WHERE USER_ID = @UserId 
+                WHERE MEMBER_ID = @UserId 
                 ORDER BY CREATED_AT DESC";
 
             using (SqlConnection conn = new SqlConnection(connStr))
@@ -169,7 +169,7 @@ namespace ShoppingSite_a.DAO
                             {
                                 OrderId = Convert.ToInt32(reader["ORDER_ID"]),
                                 // プロパティ名および読込先を UserId に！
-                                UserId = reader["USER_ID"].ToString(),
+                                UserId = reader["MEMBER_ID"].ToString(),
                                 TotalPrice = Convert.ToInt32(reader["TOTAL_PRICE"]),
                                 Tax = Convert.ToInt32(reader["TAX"]),
                                 CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])

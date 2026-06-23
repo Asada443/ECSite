@@ -11,43 +11,38 @@
         <uc:MyHeader runat="server" ID="ucHeader" />
        
 
-            <h3><asp:Label ID="lblListTitle" runat="server" Text="商品一覧"></asp:Label></h3>
+        <div class="top-page-wrapper">
+        <h3 class="top-list-title"><asp:Label ID="lblListTitle" runat="server" Text="商品一覧"></asp:Label></h3>
+        <asp:Label ID="lblNoProductsMessage" runat="server" ForeColor="Gray" Visible="false"></asp:Label>
 
-            <asp:Label ID="lblNoProductsMessage" runat="server" ForeColor="Gray" Visible="false"></asp:Label>
-
+        <div class="top-product-grid">
             <asp:Repeater ID="rptProducts" runat="server">
-                <HeaderTemplate>
-                    <table border="1" style="border-collapse: collapse; width: 800px;" cellpadding="10">
-                </HeaderTemplate>
-                
                 <ItemTemplate>
-                    <tr>
-                        <td style="width: 120px; text-align: center;">
-                            <span style="font-size: 12px; color: #ccc;">[画像]</span>
-                        </td>
-                        <td>
-                           <a href='<%# ResolveUrl("~/Views/Product/ProductDetail.aspx?id=" + Eval("ProductId")) %>' style="font-weight: bold; font-size: 16px; color: blue;">
+                    <div class="top-product-card">
+                        <div class="top-product-image">
+                            <asp:Image ID="imgProduct" runat="server" 
+                                ImageUrl='<%# ResolveUrl(Eval("ImagePath").ToString()) %>' 
+                                AlternateText='<%# Eval("ProductName") %>' />
+                        </div>
+                        <div class="top-card-body">
+                            <a href='<%# ResolveUrl("~/Views/Product/ProductDetail.aspx?id=" + Eval("ProductId")) %>' class="top-product-link">
                                 <%# Eval("ProductName") %>
                             </a>
-                            <br /><br />
-                            移住先の星：<strong><%# Eval("Planet") %></strong> 
-                            （環境：<%# Eval("RecommendedEnvironment") %>）
-                            <br />
-                            価格：<%# String.Format("{0:N0}", Eval("Price")) %> 円 
-                            / 移住枠残り：<%# Eval("Stock") %> 個
-                            <br /><br />
-                            <small><%# Eval("Description") %></small>
-                        </td>
-                        <td style="width: 100px; text-align: center;">
-                          <a href='<%# ResolveUrl("~/Views/Product/ProductDetail.aspx?id=" + Eval("ProductId")) %>' style="display: inline-block; padding: 5px 10px; background-color: #f0f0f0; border: 1px solid #ccc; text-decoration: none; color: black; font-size: 12px;">詳細を見る</a>
-                        </td>
-                    </tr>
+                            <div class="top-product-info">
+                                移住先の星：<strong><%# Eval("Planet") %></strong><br />
+                                環境：<%# Eval("RecommendedEnvironment") %><br />
+                                価格：<%# String.Format("{0:N0}", Eval("Price")) %> 円 / 残り：<%# Eval("Stock") %> 個
+                            </div>
+                            <div class="top-product-desc">
+                                <%# Eval("Description") %>
+                            </div>
+                            <a href='<%# ResolveUrl("~/Views/Product/ProductDetail.aspx?id=" + Eval("ProductId")) %>' class="top-btn-detail">詳細を見る</a>
+                        </div>
+                    </div>
                 </ItemTemplate>
-                
-                <FooterTemplate>
-                    </table>
-                </FooterTemplate>
             </asp:Repeater>
+        </div>
+    </div>
             
             
     </form>

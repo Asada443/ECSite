@@ -13,12 +13,14 @@
 
     <form id="form1" runat="server">
         <uc:MyHeader runat="server" ID="ucHeader" />
-         <h2>登録が完了しました</h2>
-    <asp:Button
-    ID="btnLogin"
-    runat="server"
-    Text="ログイン画面へ"
-    OnClick="btnLogin_Click" />
+       <div class="page-center-wrapper">
+    <div class="complete-page-card">
+        <h2>登録が完了しました</h2>
+        <div class="complete-actions">
+            <asp:Button ID="btnLogin" runat="server" Text="ログイン画面へ" OnClick="btnLogin_Click" CssClass="btn-detail" />
+        </div>
+    </div>
+</div>
     </form>
 </body>
 </html>

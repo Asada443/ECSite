@@ -11,55 +11,41 @@
 <body>
     <form id="form1" runat="server">
         <uc:MyHeader runat="server" ID="ucHeader" />
-        <h2>商品詳細</h2>
 
-        <asp:Image ID="imgProduct" runat="server" Width="300px" />
-<br /><br />
+        <div class="detail-page-wrapper">
+        <div class="detail-card">
+            <div class="detail-image">
+                <asp:Image ID="imgProduct" runat="server" />
+            </div>
+            <div class="detail-info">
+                <h2><asp:Label ID="lblProductName" runat="server" /></h2>
+                
+                <p class="price-display">価格：<span><asp:Label ID="lblPrice" runat="server" />円</span></p>
+                <p>移住先の星：<asp:Label ID="lblPlanet" runat="server" /></p>
+                <p>残り移住枠：<asp:Label ID="lblStock" runat="server" /></p>
+                
+                <div class="description-area">
+                    <h3>商品説明</h3>
+                    <p><asp:Label ID="lblDescription" runat="server" /></p>
+                    
+                    <h3>推奨環境</h3>
+                    <p><asp:Label ID="lblRecommendedEnvironment" runat="server" /></p>
+                </div>
+                <div class="action-area">
+                    数量：<asp:DropDownList ID="ddlQty" runat="server" CssClass="qty-select"></asp:DropDownList>
+                    <asp:Button ID="btnCart" runat="server" Text="カートに追加" OnClick="btnCart_Click" CssClass="btn-cart" />
+                </div>
 
-商品名：
-<asp:Label ID="lblProductName" runat="server" />
-<br /><br />
-
-価格：
-<asp:Label ID="lblPrice" runat="server" />
-円
-<br /><br />
-
-移住先の星：
-<asp:Label ID="lblPlanet" runat="server" />
-<br /><br />
-
-残り移住枠：
-<asp:Label ID="lblStock" runat="server" />
-<br /><br />
-
-説明：
-<br />
-<asp:Label ID="lblDescription" runat="server" />
-<br /><br />
-
-推奨環境：
-<br />
-<asp:Label ID="lblRecommendedEnvironment" runat="server" />
-<br /><br />
-
-数量：
-<asp:DropDownList ID="ddlQty" runat="server">
-</asp:DropDownList>
-
-<br /><br />
-<asp:Button ID="btnCart" runat="server" Text="カートに追加" OnClick="btnCart_Click"  />
-<asp:Button ID="btnGoCart" runat="server"
-    Text="カートを見る"
-    OnClick="btnGoCart_Click" />
-
-            <br /><br />
-
-        <asp:Label ID="lblMessage" runat="server" ForeColor="Green" />
-
-        <a href="/Views/Product/ProductList.aspx">
-    商品一覧へ戻る
-</a>
+                <asp:Button ID="btnGoCart" runat="server" Text="カートを見る" OnClick="btnGoCart_Click" CssClass="btn-link" />
+                <asp:Label ID="lblMessage" runat="server" ForeColor="Green" />
+                
+                <br /><br />
+                <a href="/Views/Product/ProductList.aspx" class="back-link">← 商品一覧へ戻る</a>
+            </div>
+          
+        </div>
+    </div>
+    
     </form>
 
 

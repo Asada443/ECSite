@@ -1,105 +1,105 @@
-﻿/* ==========================================
+﻿ /*==========================================
    共通デザイン設定 (MyStyle.css)
-   ========================================== */
+   ========================================== 
 
-/* --- 1. サイト全体の土台 --- */
+ --- 1. サイト全体の土台 ---*/ 
 body {
     background-color: #F8F8F8; /* サイト全体の背景色 */
-    font-family: "Meiryo", sans-serif; /* 文字は読みやすいメイリオ */
-    padding: 20px; /* 全体的な余白 */
-    color: #333; /* 文字色（真っ黒すぎないグレー） */
-    padding-top: 100px; /* ヘッダーの高さ分だけ下にずらす */
-}
+    font-family: "Meiryo", sans-serif;  /*文字は読みやすいメイリオ */
+    padding: 20px;  /*全体的な余白 */
+    color: #333;  /*文字色（真っ黒すぎないグレー） */
+    padding-top: 100px;  /*ヘッダーの高さ分だけ下にずらす 
+*/}
 
-/* --- 2. 商品一覧のカード枠 --- */
+ /*--- 2. 商品一覧のカード枠 ---*/ 
 .product-card {
-    border: 1px solid #ddd; /* 枠線：薄いグレー */
+    border: 1px solid #ddd;  /*枠線：薄いグレー */
     margin: 10px; /* 外側の余白 */
-    padding: 15px; /* 内側の余白 */
-    width: 250px; /* カードの幅 */
-    float: left; /* 左から並べる */
-    background-color: white; /* カードの背景色 */
-    border-radius: 8px; /* 角の丸み */
-    text-align: center; /* 文字を中央揃え */
-    border: none; /* 枠線を消す */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1); /* ほんのり影をつける */
-    transition: transform 0.2s; /* マウスを乗せた時にふわっと動かす */
-    min-height: 400px; /* カードの高さを揃えておく */
-    display: flex;
+    padding: 15px;  /*内側の余白 */
+    width: 250px;  /*カードの幅 */
+    float: left;  /*左から並べる */
+    background-color: white;  /*カードの背景色 */
+    border-radius: 8px;  /*角の丸み */
+    text-align: center;  /*文字を中央揃え */
+    border: none;  /*枠線を消す */
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /*ほんのり影をつける */
+    transition: transform 0.2s;  /*マウスを乗せた時にふわっと動かす */
+    min-height: 400px;  /*カードの高さを揃えておく 
+*/    display: flex;
     flex-direction: column;
-    justify-content: space-between; /* 要素を均等に配置 */
+    justify-content: space-between;  /*要素を均等に配置 */
 }
 
-/* --- 3. ボタン系の共通設定 --- */
+ /*--- 3. ボタン系の共通設定 ---*/ 
 .btn-detail {
-    margin-top: 10px; /* 上側の余白 */
-    padding: 0 15px; /* ボタン内の余白 */
-    background-color: #007bff; /* ボタンの色：青 */
-    color: white; /* 文字の色：白 */
-    border: none; /* 枠線を消す */
-    border-radius: 4px; /* 角を少し丸く */
-    cursor: pointer; /* マウスを乗せたら指の形にする */
+    margin-top: 10px;  /*上側の余白 */
+    padding: 0 15px;  /*ボタン内の余白*/ 
+    background-color: #007bff;  /*ボタンの色：青 */
+    color: white;  /*文字の色：白 */
+    border: none;  /*枠線を消す */
+    border-radius: 4px;  /*角を少し丸く */
+    cursor: pointer;  /*マウスを乗せたら指の形にする */
     line-height: normal;
     vertical-align: middle;
     display: inline-block;
     height: 40px;
 }
 
-/* ボタンを並べる親要素（これでガタつきを止める） */
+ /*ボタンを並べる親要素（これでガタつきを止める）*/ 
 .button-group {
-    display: flex; /* これで一列に並ぶ */
-    gap: 10px; /* ボタン同士の間隔を一定にする */
-    align-items: center; /* 縦の位置を揃える */
+    display: flex;  /*これで一列に並ぶ */
+    gap: 10px;  /*ボタン同士の間隔を一定にする */
+    align-items: center;  /*縦の位置を揃える */
     margin-top: 20px;
 }
-    /* ボタンにマウスを乗せたときの色変化*/
+     /*ボタンにマウスを乗せたときの色変化*/
  .btn-detail:hover {
-        background-color: #0056b3; /* 少し濃い青にする */
-        transform: translateY(-5px); /* マウスを乗せると上に少し浮く */
+        background-color: #0056b3;  /*少し濃い青にする */
+        transform: translateY(-5px);  /*マウスを乗せると上に少し浮く */
     }
 
-    /* ボタンを強く押した（クリックした）ときの動き */
+     /*ボタンを強く押した（クリックした）ときの動き*/ 
  .btn-detail:active {
-        transform: translateY(0); /* 浮き上がるのを戻す */
-        background-color: #004085; /* さらに濃い青にして「押した」ことを表現 */
-        box-shadow: inset 0 3px 5px rgba(0,0,0,0.2); /* 内側に影を入れて凹ませる */
+        transform: translateY(0);  /*浮き上がるのを戻す*/ 
+        background-color: #004085;  /*さらに濃い青にして「押した」ことを表現*/ 
+        box-shadow: inset 0 3px 5px rgba(0,0,0,0.2);  /*内側に影を入れて凹ませる */
     }
 
 .sort-container {
     display: flex;         /* 横並びにする */
-    justify-content: flex-end; /* 右側に寄せる */
-    margin-bottom: 20px;   /* 下に少し隙間を作る */
-    margin-right: 20px;    /* 画面端から少し離す */
+    justify-content: flex-end;  /*右側に寄せる */
+    margin-bottom: 20px;    /*下に少し隙間を作る*/ 
+    margin-right: 20px;     /*画面端から少し離す */
 }
 
-/* ボタンとリストの間に少し隙間 */
+ /*ボタンとリストの間に少し隙間*/ 
 .sort-container select {
     margin-right: 10px;
 }
 
 .header-container {
-    background-color: rgba(255, 255, 255, 0.85); /* 最後の数字0.85が透明度（0〜1） */
-    backdrop-filter: blur(10px); /* これを入れると、背景がすりガラスみたいにぼやける */
+    background-color: rgba(255, 255, 255, 0.85);  /*最後の数字0.85が透明度（0〜1） */
+    backdrop-filter: blur(10px);  /*これを入れると、背景がすりガラスみたいにぼやける */
     padding: 15px;
     border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-    position: fixed; /* これで固定される */
+    position: fixed;  /*これで固定される */
     top: 0;
     left: 0;
     width: 100%;
-    z-index: 1000; /* 他のコンテンツより手前に表示する設定 */
-    /* ヘッダー全体を横並びの土台にする */
-    display: flex;
-    justify-content: space-between; /* ロゴとナビを左右に分ける */
-    align-items: center; /* 縦位置を真ん中に */
+    z-index: 1000;  /*他のコンテンツより手前に表示する設定 */
+     /*ヘッダー全体を横並びの土台にする 
+*/    display: flex;
+    justify-content: space-between;  /*ロゴとナビを左右に分ける */
+    align-items: center;  /*縦位置を真ん中に*/ 
     padding: 15px 30px;
-    box-sizing: border-box; /* 重要！paddingを含めて幅を計算させる */
+    box-sizing: border-box;  /*重要！paddingを含めて幅を計算させる*/ 
 }
 
 .header-logo {
     color: red;
     font-size: 24px;
     font-weight: bold;
-    white-space: nowrap; /* ロゴが勝手に改行されるのを防ぐ */
+    white-space: nowrap;  /*ロゴが勝手に改行されるのを防ぐ*/ 
 }
 
 .header-nav {
@@ -130,20 +130,20 @@ body {
     border: 1px solid #ccc;
     border-radius: 4px;
  
-    box-sizing: border-box; /* 枠線を含めてサイズ計算 */
+    box-sizing: border-box;  /*枠線を含めてサイズ計算 */
     vertical-align: middle;
-    height: 40px; /* ボタンと同じ高さにする */
+    height: 40px;  /*ボタンと同じ高さにする */
 }
 
 
 .page-center-wrapper {
     display: flex;
     justify-content: center;
-    padding-top: 80px; /* ヘッダー分だけ下げる */
+    padding-top: 80px;  /*ヘッダー分だけ下げる */
     min-height: 80vh;
 }
 
-/* 共通のフォームカード */
+ /*共通のフォームカード*/ 
 .form-card {
     background-color: white;
     padding: 30px;
@@ -158,9 +158,9 @@ body {
     margin-bottom: 20px;
 }
 
-/* 入力欄をカード幅いっぱいに広げる */
+ /*入力欄をカード幅いっぱいに広げる*/ 
 .input-field {
-    display: block; /* 改行させる */
+    display: block;  /*改行させる */
     width: 100%;
     height: 40px;
     margin-top: 8px;
@@ -178,19 +178,19 @@ body {
     font-size: 14px;
 }
 
-/* ボタンを横並びにするための枠 */
+ /*ボタンを横並びにするための枠*/ 
 .form-actions {
     display: flex;
     gap: 10px;
     margin-top: 20px;
 }
 
-    /* ボタンが2つあるので幅を調整 */
+     /*ボタンが2つあるので幅を調整*/ 
     .form-actions .btn-detail {
-        flex: 1; /* ボタンを均等な幅にする */
+        flex: 1;  /*ボタンを均等な幅にする */
     }
 
-/* ドロップダウンもinputと同じ見た目にする */
+ /*ドロップダウンもinputと同じ見た目にする*/ 
 .input-field {
     display: block;
     width: 100%;
@@ -202,7 +202,7 @@ body {
     box-sizing: border-box;
 }
 
-/* マイページメニューを縦並びに */
+ /*マイページメニューを縦並びに*/ 
 .mypage-menu {
     display: flex;
     flex-direction: column;
@@ -210,23 +210,23 @@ body {
     margin-top: 25px;
 }
 
-    /* メニュー内のボタンは幅いっぱいに */
+     /*メニュー内のボタンは幅いっぱいに*/ 
     .mypage-menu .btn-detail {
         width: 100%;
-        margin-top: 0; /* 共通設定のmarginをリセット */
+        margin-top: 0;  /*共通設定のmarginをリセット */
     }
 
-/* ログアウトボタンだけ少し目立たないように（または色を変えるなら） */
+ /*ログアウトボタンだけ少し目立たないように（または色を変えるなら）*/ 
 .btn-logout {
-    background-color: #6c757d !important; /* グレー系の色 */
-    margin-top: 20px; /* 他のボタンと距離を置いて「別枠」にする */
+    background-color: #6c757d !important;/*;  グレー系の色 */
+    margin-top: 20px;  /*他のボタンと距離を置いて「別枠」にする */
 }
 
     .btn-logout:hover {
         background-color: #5a6268 !important;
     }
 
-/* 削除（退会）ボタンを少し赤系にして危険度を表現 */
+ /*削除（退会）ボタンを少し赤系にして危険度を表現*/ 
 .btn-danger {
     background-color: #dc3545 !important;
 }
@@ -235,13 +235,547 @@ body {
         background-color: #c82333 !important;
     }
 
-/* ボタンの余計な余白をリセットする */
+ /*ボタンの余計な余白をリセットする*/ 
 .button-group .btn-detail {
-    margin-top: 0; /* 共通のmargin-top 10pxを打ち消す */
+    margin-top: 0;  /*共通のmargin-top 10pxを打ち消す */
     flex: 1; /* 2つのボタンを均等幅にする（不要ならこの行を削除） */
 }
 
-/* もし「幅を均等にしなくていい（文字の長さに合わせたい）」なら */
-/*.button-group .btn-detail {
-    flex: none;*/ /* ボタン幅を文字数に合わせる */
-/*}*/
+ /*もし「幅を均等にしなくていい（文字の長さに合わせたい）」なら*/ 
+.button-group .btn-detail {
+    flex: none;  /*ボタン幅を文字数に合わせる */
+}
+
+
+ /*--- 履歴テーブルの装飾 ---*/ 
+.history-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+    .history-table th {
+        text-align: left;
+        padding: 12px;
+        border-bottom: 2px solid #eee;
+        color: #555;
+        font-size: 14px;
+    }
+
+    .history-table td {
+        padding: 15px 12px;
+        border-bottom: 1px solid #f0f0f0;
+        vertical-align: middle;
+    }
+
+     /*ボタンの余白調整（共通設定のmarginを消す）*/ 
+    .history-table .btn-detail {
+        margin-top: 0;
+        padding: 5px 15px;
+        height: 35px;
+        font-size: 13px;
+    }
+
+ /*戻るボタンの枠*/ 
+.btn-container {
+    margin-top: 20px;
+    text-align: center;
+}
+
+ /*--- 履歴詳細画面専用の調整 ---*/ 
+.detail-info {
+    margin: 20px 0;
+    line-height: 1.8;
+    color: #333;
+}
+
+.detail-total {
+    font-weight: bold;
+    color: #007bff;
+}
+
+
+
+ /*--- 履歴詳細画面専用のボタンコンテナ ---*/ 
+.btn-container-detail {
+    margin-top: 20px;
+    display: flex;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+}
+
+     /*履歴詳細専用の特別ボタン設定*/ 
+    .btn-container-detail .btn-detail {
+        margin-top: 0 !important;  /*既存のmarginを打ち消す */
+        height: 40px !important;
+        line-height: 40px !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        padding: 0 20px !important;
+    }
+
+     /*--- 商品管理テーブル専用の調整 ---*/ 
+.manage-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.manage-table th, .manage-table td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #eee;
+    text-align: left;
+}
+
+.manage-table th {
+    background-color: #f8f9fa;
+    color: #555;
+}
+
+ /*操作ボタンの配置をスッキリさせる*/ 
+.action-buttons {
+    display: flex;
+    gap: 5px;
+}
+ /*--- フォーム入力の共通調整 ---*/ 
+.input-label {
+    display: block;
+    margin-top: 15px;
+    font-weight: bold;
+    color: #555;
+}
+
+.form-table {
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+    .form-table td {
+        padding: 8px 0;
+    }
+
+ /*ValidationSummaryを目立たせる*/ 
+.validation-summary {
+    background-color: #fff0f0;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+ /*--- 商品登録画面専用のボタン整列用クラス ---*/ 
+.register-form-actions {
+    display: flex;
+    gap: 10px;
+    margin-top: 20px;
+    margin-bottom: 0;  /*最後に余計な余白を作らない */
+    align-items: center;  /*縦軸の中央揃え */
+}
+
+     この画面専用のボタン設定 
+    .register-form-actions .btn-detail {
+        margin-top: 0 !important;
+        height: 40px !important;
+        line-height: 40px !important;
+        padding: 0 20px !important;
+        display: inline-flex !important;
+        align-items: center;
+        justify-content: center;
+        flex: 1;  /*ボタンの幅を均等にする */
+    }
+
+ /*商品一覧エリアを中央に寄せるための設定*/ 
+.page-header {
+    max-width: 1140px;
+    margin: 40px auto 20px auto;  /*画面中央に配置 */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.product-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  /*こ*//*れで全体がど真ん中に来る！ */
+    max-width: 1140px;
+    margin: 0 auto 50px auto;
+    gap: 30px;
+}
+
+.product-card {
+    width: 260px;
+    padding: 15px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    box-sizing: border-box;
+}
+
+.product-image {
+    width: 100%;
+    height: 260px;
+    overflow: hidden;
+    margin-bottom: 15px;
+    border-radius: 4px;
+}
+
+    .product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+ /*詳細ページ全体のレイアウト*/ 
+.detail-page-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+.detail-card {
+    background-color: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    display: flex;
+    gap: 40px;
+    max-width: 900px;
+    width: 100%;
+    align-items: flex-start;
+}
+
+ /*画像のスタイル*/ 
+.detail-image {
+    flex: 1;
+}
+
+    .detail-image img {
+        width: 100%;
+        border-radius: 8px;
+        object-fit: cover;
+    }
+
+ /*テキスト情報のスタイル*/ 
+.detail-info {
+    flex: 1;
+}
+
+.price-display {
+    font-size: 1.5em;
+    font-weight: bold;
+    color: #e74c3c;
+}
+
+ /*ボタンと入力欄のスタイル*/ 
+.action-area {
+    margin: 20px 0;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.qty-select {
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+.btn-cart {
+    padding: 10px 25px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-link {
+    background: none;
+    border: none;
+    color: #555;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.back-link {
+    color: #007bff;
+    text-decoration: none;
+}
+
+ /*説明文エリアの調整*/ 
+.description-area {
+    margin: 25px 0;
+    padding: 15px;
+    background-color: #f9f9f9;  /*背景を少しだけ薄いグレーにして強調 */
+    border-left: 4px solid #007bff;  /*左端に青いアクセントライン */
+    border-radius: 4px;
+}
+
+    .description-area h3 {
+        font-size: 1em;
+        margin: 0 0 5px 0;
+        color: #555;
+        border-bottom: 1px solid #ddd;
+    }
+
+    .description-area p {
+        margin-bottom: 15px;
+        line-height: 1.6;  /*行間を広げて読みやすく */
+        color: #333;
+    }
+
+.cart-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+    .cart-table th {
+        background-color: #f8f9fa;
+        padding: 12px;
+        border-bottom: 2px solid #ddd;
+        text-align: left;
+    }
+
+    .cart-table td {
+        padding: 12px;
+        border-bottom: 1px solid #eee;
+    }
+
+.cart-summary {
+    text-align: right;
+    margin: 20px 0;
+    font-size: 1.2em;
+}
+
+.total-price {
+    font-weight: bold;
+    color: #e74c3c;
+    font-size: 1.5em;
+}
+
+.cart-actions {
+    margin-top: 30px;
+    text-align: center;
+}
+
+.note {
+    font-size: 0.85em;
+    color: #666;
+    margin: 10px 0;
+}
+
+ /*合計金額エリアの装飾*/ 
+.confirm-summary {
+    text-align: right;
+    margin: 20px 0;
+    padding-top: 15px;
+    border-top: 2px solid #eee;
+}
+
+.total-line {
+    font-size: 1.4em;
+    font-weight: bold;
+    color: #333;
+}
+
+    .total-line span {
+        color: #e74c3c;  /*赤字で目立たせる */
+    }
+
+ /*完了画面専用のデザイン*/ 
+.complete-card {
+    max-width: 600px;
+    text-align: center;
+}
+
+.complete-title {
+    color: #28a745;
+}
+
+.order-complete-box {
+    text-align: left;
+    margin: 20px 0;
+    padding: 20px;
+    background: #f8f9fa;
+    border-radius: 8px;
+}
+
+.complete-item {
+    margin-bottom: 10px;
+}
+
+.complete-total {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+/* --- トップページ専用デザイン (既存CSSと競合しない専用クラス) --- */
+.top-page-wrapper {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.top-list-title {
+    font-size: 24px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid #ddd;
+    padding-bottom: 10px;
+}
+/*
+.top-product-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: flex-start;
+}*/
+
+/* 1. 全体を包む枠の幅を少し広げるか、カードの幅を少し抑える */
+.top-product-grid {
+    display: flex;
+    flex-wrap: wrap; /* これで右に並びきれなくなったら自動で改行される */
+    gap: 20px; /* カード同士の隙間 */
+    justify-content: flex-start; /* 左詰めにする */
+    max-width: 1200px; /* 枠の最大幅を広めに設定 */
+    margin: 0 auto;
+}
+
+
+.top-product-card {
+    width: 270px;
+    background: white;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    display: flex;
+    flex-direction: column;
+}
+
+.top-product-image {
+    width: 100%;
+    height: 180px;
+    margin-bottom: 10px;
+}
+
+    .top-product-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+.top-card-body {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.top-product-link {
+    font-weight: bold;
+    font-size: 18px;
+    color: #007bff;
+    text-decoration: none;
+    margin-bottom: 10px;
+    display: block;
+}
+
+.top-product-info {
+    font-size: 13px;
+    color: #555;
+    margin-bottom: 10px;
+    line-height: 1.5;
+}
+
+.top-product-desc {
+    font-size: 12px;
+    color: #777;
+    margin-bottom: 15px;
+    flex-grow: 1;
+}
+
+.top-btn-detail {
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border: 1px solid #ddd;
+    color: #333;
+    text-decoration: none;
+    border-radius: 4px;
+    font-size: 14px;
+    transition: background 0.2s;
+}
+
+    .top-btn-detail:hover {
+        background-color: #e2e6ea;
+    }
+
+
+/* --- エラー画面専用デザイン --- */
+.error-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 100%;
+    max-width: 500px;
+    height: fit-content;
+}
+
+    .error-card h2 {
+        color: #333;
+        margin-bottom: 30px;
+    }
+
+.error-actions {
+    display: flex;
+    justify-content: center;
+}
+
+
+/* --- 確認画面専用の調整 --- */
+.confirm-info {
+    margin: 20px 0;
+    text-align: left;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+}
+
+    .confirm-info p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+    .confirm-info strong {
+        color: #333;
+    }
+
+/* --- 登録完了画面専用スタイル (MyStyle.cssの末尾に追加) --- */
+.complete-page-card {
+    background: white;
+    padding: 40px;
+    border-radius: 12px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center; /* 文字の中央寄せをCSSで管理 */
+    width: 100%;
+    max-width: 500px;
+}
+
+.complete-actions {
+    margin-top: 20px;
+    display: flex; /* Flexboxで配置を管理 */
+    justify-content: center; /* ボタンを中央寄せ */
+}
+
+    /* 念のため、ボタンが大きすぎないように調整 */
+    .complete-actions .btn-detail {
+        min-width: 150px;
+    }

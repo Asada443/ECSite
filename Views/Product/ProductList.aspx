@@ -18,6 +18,9 @@
     NavigateUrl="~/Views/Home/Top.aspx"
     Text="← トップへ戻る" />
 <br /><br />
+
+
+<div class="page-header">
     <h2>商品一覧</h2>
 <div class="sort-container">
     <asp:DropDownList ID="ddlSort" runat="server">
@@ -31,7 +34,8 @@
 <asp:Button ID="btnSort" runat="server"
     Text="適用"
     OnClick="btnSort_Click" />
-</div>
+</div> </div>
+
 
     <!-- エラー表示（必要なら） -->
     <asp:Label ID="lblError" runat="server" ForeColor="Red" />
@@ -44,19 +48,23 @@
 
     <br /><br />
 
+    <div class="product-container">
+
     <!-- 商品一覧（Repeater） -->
     <asp:Repeater ID="rptProducts" runat="server" OnItemCommand="rptProducts_ItemCommand">
 
         <ItemTemplate>
 
              <div class="product-card"> 
+                <div class="product-image">
 
                 <asp:Image 
-                    ID="imgProduct" 
-                    runat="server"
-                    ImageUrl='<%# Eval("ImagePath") %>'
-                    Width="200px" />
-
+                ID="imgProduct" 
+                runat="server"
+                ImageUrl='<%# ResolveUrl(Eval("ImagePath").ToString()) %>'
+                Width="200px" 
+                AlternateText='<%# Eval("Planet") %>' />
+                </div>
                 <br />
 
                 <!-- 商品名 -->
@@ -94,7 +102,7 @@
         </ItemTemplate>
 
     </asp:Repeater>
-
+        </div>
     </form>
 </body>
 </html>

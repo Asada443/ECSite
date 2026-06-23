@@ -10,64 +10,51 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h2>カート画面</h2>
+     <div class="page-center-wrapper">
+        <div class="form-card" style="max-width: 800px;">
+            <h2>ショッピングカート</h2>
+            <asp:Label ID="lblMessage" runat="server" ForeColor="Red" />
 
-        <asp:Label ID="lblMessage" runat="server" />
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>商品名</th>
+                        <th>価格</th>
+                        <th>数量</th>
+                        <th>小計</th>
+                        <th>操作</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rptCart" runat="server" OnItemDataBound="rptCart_ItemDataBound" OnItemCommand="rptCart_ItemCommand">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%# Eval("ProductName") %></td>
+                                <td><%# Eval("Price") %> 円</td>
+                                <td><asp:DropDownList ID="ddlQty" runat="server" /></td>
+                                <td><%# Eval("SubTotal") %> 円</td>
+                                <td>
+                                    <asp:Button ID="btnDelete" runat="server" Text="削除" CommandName="Delete" CommandArgument='<%# Eval("ProductId") %>' CssClass="btn-danger" />
+                                    <asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("ProductId") %>' />
+                                </td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
 
-        <br />
-        <br />
+            <div class="cart-summary">
+                <p>合計金額：<span class="total-price"><asp:Label ID="lblTotal" runat="server" /> 円</span></p>
+                <asp:Button ID="btnUpdate" runat="server" Text="数量を更新" OnClick="btnUpdate_Click" CssClass="btn-detail" />
+            </div>
 
-        <asp:Repeater ID="rptCart" runat="server" OnItemDataBound="rptCart_ItemDataBound" OnItemCommand="rptCart_ItemCommand">
-            <ItemTemplate>
-
-                <br />
-
-                商品名： <%# Eval("ProductName") %><br />
-
-                価格： <%# Eval("Price") %> 円<br />
-
-                数量：
-        <asp:DropDownList ID="ddlQty" runat="server"></asp:DropDownList>
-
-                <br />
-
-                小計： <%# Eval("SubTotal") %> 円
-
-
-                <asp:Button ID="btnDelete"
-                    runat="server"
-                    Text="削除"
-                    CommandName="Delete"
-                    CommandArgument='<%# Eval("ProductId") %>' />
-
-
-                <asp:HiddenField ID="hfProductId" runat="server"
-                    Value='<%# Eval("ProductId") %>' />
-
-            </ItemTemplate>
-
-        </asp:Repeater>
-        <br />
-        <br />
-
-        <br />
-        <br />
-        合計金額：<asp:Label ID="lblTotal" runat="server" />
-        円
-
-        <asp:Button ID="btnUpdate" runat="server"
-            Text="更新"
-            OnClick="btnUpdate_Click" />
-
-        ※「買い物かご」に入れた段階では商品の確保とはならず注文ステップ完了後、注文完了画面が出た段階で商品確保となります。
-
-        <a href="/Views/Product/ProductList.aspx">商品一覧へ戻る
-</a>
-        <br /><br />
-
-<asp:Button ID="btnOrder" runat="server"
-    Text="購入へ進む"
-    OnClick="btnOrder_Click" />
+            <div class="cart-actions">
+                <asp:Button ID="btnOrder" runat="server" Text="購入へ進む" OnClick="btnOrder_Click" CssClass="btn-detail" style="width:100%; padding: 15px; font-size: 18px;" />
+                <p class="note">※注文完了画面が出るまで商品は確保されません。</p>
+                <a href="/Views/Product/ProductList.aspx">← 商品一覧へ戻る</a>
+            </div>
+        </div>
+    </div>
     </form>
 </body>
 </html>

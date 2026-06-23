@@ -123,6 +123,16 @@
     <Content Include="Default.aspx" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
+    <Content Include="Images\アイス星.png" />
+    <Content Include="Images\カラっカラ星.png" />
+    <Content Include="Images\シティ星.png" />
+    <Content Include="Images\ネイチャー星.png" />
+    <Content Include="Images\パサパサ星.png" />
+    <Content Include="Images\フォレスト星.png" />
+    <Content Include="Images\ブルブル星.png" />
+    <Content Include="Images\ポカポカ星.png" />
+    <Content Include="Images\地球.jpg" />
+    <Content Include="Images\餃子星.png" />
     <Content Include="Views\Admin\ProductEdit.aspx" />
     <Content Include="Views\Admin\ProductManage.aspx" />
     <Content Include="Views\Admin\ProductRegister.aspx" />

@@ -24,5 +24,6 @@ namespace ShoppingSite_a.DTO
         public string RecommendedEnvironment { get; set; }
 
         public DateTime CreatedAt { get; set; }
+
     }
 }

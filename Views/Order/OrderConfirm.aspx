@@ -9,30 +9,47 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <h2>購入確認画面</h2>
+    <div class="page-center-wrapper">
+        <div class="form-card" style="max-width: 700px;">
+            <h2>購入内容の確認</h2>
+            <p>以下の内容で注文を確定してもよろしいですか？</p>
 
-        <asp:Repeater ID="rptConfirm" runat="server">
-            <ItemTemplate>
-                <div style="margin-bottom: 10px; border-bottom: 1px dashed #ccc; padding-bottom: 5px;">
-                    商品名： <%# Eval("ProductName") %><br />
-                    価格： <%# Eval("Price") %> 円<br />
-                    数量： <%# Eval("Quantity") %><br />
-                    小計： <%# Eval("SubTotal") %> 円
-                </div>
-            </ItemTemplate>
-        </asp:Repeater>
+            <table class="cart-table">
+                <thead>
+                    <tr>
+                        <th>商品名</th>
+                        <th>数量</th>
+                        <th>単価</th>
+                        <th>小計</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <asp:Repeater ID="rptConfirm" runat="server">
+                        <ItemTemplate>
+                            <tr>
+                                <td><%# Eval("ProductName") %></td>
+                                <td><%# Eval("Quantity") %></td>
+                                <td><%# Eval("Price") %> 円</td>
+                                <td><%# Eval("SubTotal") %> 円</td>
+                            </tr>
+                        </ItemTemplate>
+                    </asp:Repeater>
+                </tbody>
+            </table>
 
-        <br />
-        <div>
-            消費税 (10%)： <asp:Label ID="lblTax" runat="server" /> 円<br />
-            <strong>合計金額： <asp:Label ID="lblTotal" runat="server" /> 円</strong>
+            <div class="confirm-summary">
+                <p>消費税 (10%)： <span><asp:Label ID="lblTax" runat="server" /> 円</span></p>
+                <p class="total-line">合計金額： <span><asp:Label ID="lblTotal" runat="server" /> 円</span></p>
+            </div>
+
+            <div class="form-actions">
+                <asp:Button ID="btnConfirm" runat="server" Text="購入を確定する" OnClick="btnConfirm_Click" 
+                    CssClass="btn-detail" OnClientClick="return confirm('購入を確定します。よろしいですか？');" />
+                <asp:Button ID="btnCancel" runat="server" Text="キャンセル" OnClick="btnCancel_Click" 
+                    CssClass="btn-logout" />
+            </div>
         </div>
-
-        <br />
-        <asp:Button ID="btnConfirm" runat="server" Text="購入確定" OnClick="btnConfirm_Click" 
-            OnClientClick="return confirm('購入を確定します。よろしいですか？');" />
-
-        <asp:Button ID="btnCancel" runat="server" Text="キャンセル" OnClick="btnCancel_Click" />
+    </div>
     </form>
 </body>
 </html>
