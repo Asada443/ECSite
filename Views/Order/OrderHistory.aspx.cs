@@ -16,18 +16,19 @@ namespace ShoppingSite_a.Views.Order
         {
             if (!IsPostBack)
             {
-               
                 if (Session["User"] != null)
                 {
                     // セッションからMemberDTOを取り出す
                     MemberDTO member = (MemberDTO)Session["User"];
 
-                    // 会員DTOの中から、会員IDを取得する
-                    string memberId = member.MemberId;
+                    // 【修正完了】会員DTOの中から、新しい宇宙会員ID（UserId）を取得する
+                    string userId = member.UserId;
 
                     // DAOから履歴を取得してバインド
                     OrderDAO dao = new OrderDAO();
-                    List<OrderDTO> historyList = dao.GetOrderHistoryByMemberId(memberId);
+
+                    //  【修正完了】新しくなったDAOのメソッド「GetOrderHistoryByUserId」を呼び出す
+                    List<OrderDTO> historyList = dao.GetOrderHistoryByUserId(userId);
 
                     rptOrderHistory.DataSource = historyList;
                     rptOrderHistory.DataBind();

@@ -4,6 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+     <link href="<%= ResolveUrl("~/CSS/MyStyle.css") %>" rel="stylesheet" type="text/css" />
     <title>購入完了</title>
 </head>
 <body>
@@ -27,7 +28,7 @@
             </asp:Repeater>
 
             <br />
-            消費税： <asp:Label ID="lblTax" runat="server" /> 円<br />
+            消費税： <asp:Label ID="lblTax" runat="server" /> 円<br />ke
             <strong>合計金額： <asp:Label ID="lblTotal" runat="server" /> 円</strong>
         </div>
 

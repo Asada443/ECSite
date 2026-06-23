@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Configuration; 
+using System.Configuration;
 using System.Data.SqlClient;
 using ShoppingSite_a.DTO;
 
@@ -8,7 +8,6 @@ namespace ShoppingSite_a.DAO
 {
     public class OrderDAO
     {
-       
         private string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
 
         /// <summary>
@@ -21,23 +20,25 @@ namespace ShoppingSite_a.DAO
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
-                
+
                 // トランザクションの開始
                 SqlTransaction transaction = conn.BeginTransaction();
 
                 try
                 {
                     // 1. T_ORDER テーブルに注文の親情報を登録
+                    // SQLのカラム名を MEMBER_ID ➔ USER_ID に変更
                     string orderSql = @"
-                        INSERT INTO T_ORDER (MEMBER_ID, TOTAL_PRICE, TAX, CREATED_AT)
-                        VALUES (@MemberId, @TotalPrice, @Tax, GETDATE());
+                        INSERT INTO T_ORDER (USER_ID, TOTAL_PRICE, TAX, CREATED_AT)
+                        VALUES (@UserId, @TotalPrice, @Tax, GETDATE());
                         SELECT SCOPE_IDENTITY();";
 
                     SqlCommand cmdOrder = new SqlCommand(orderSql, conn, transaction);
-                    cmdOrder.Parameters.AddWithValue("@MemberId", order.MemberId);
+                    // order.MemberId ➔ order.UserId に書き換え
+                    cmdOrder.Parameters.AddWithValue("@UserId", order.UserId);
                     cmdOrder.Parameters.AddWithValue("@TotalPrice", order.TotalPrice);
                     cmdOrder.Parameters.AddWithValue("@Tax", order.Tax);
-                    
+
                     generatedOrderId = Convert.ToInt32(cmdOrder.ExecuteScalar());
 
                     // 2. カートの商品数だけループして明細登録と在庫減算
@@ -47,7 +48,7 @@ namespace ShoppingSite_a.DAO
                         string detailSql = @"
                             INSERT INTO T_ORDER_DETAIL (ORDER_ID, PRODUCT_ID, QUANTITY, PRICE)
                             VALUES (@OrderId, @ProductId, @Quantity, @Price)";
-                        
+
                         SqlCommand cmdDetail = new SqlCommand(detailSql, conn, transaction);
                         cmdDetail.Parameters.AddWithValue("@OrderId", generatedOrderId);
                         cmdDetail.Parameters.AddWithValue("@ProductId", detail.ProductId);
@@ -56,12 +57,11 @@ namespace ShoppingSite_a.DAO
                         cmdDetail.ExecuteNonQuery();
 
                         // 2-b. products テーブルの STOCK（在庫数）を減算
-                      
                         string stockSql = @"
                             UPDATE products 
                             SET STOCK = STOCK - @Quantity 
                             WHERE PRODUCT_ID = @ProductId";
-                        
+
                         SqlCommand cmdStock = new SqlCommand(stockSql, conn, transaction);
                         cmdStock.Parameters.AddWithValue("@Quantity", detail.Quantity);
                         cmdStock.Parameters.AddWithValue("@ProductId", detail.ProductId);
@@ -94,7 +94,7 @@ namespace ShoppingSite_a.DAO
                 string orderSql = "SELECT * FROM T_ORDER WHERE ORDER_ID = @OrderId";
                 SqlCommand cmd = new SqlCommand(orderSql, conn);
                 cmd.Parameters.AddWithValue("@OrderId", orderId);
-                
+
                 conn.Open();
                 using (SqlDataReader reader = cmd.ExecuteReader())
                 {
@@ -103,6 +103,8 @@ namespace ShoppingSite_a.DAO
                         order = new OrderDTO
                         {
                             OrderId = (int)reader["ORDER_ID"],
+                            // データベースから取得する部分も USER_ID を見るように修正
+                            UserId = reader["USER_ID"].ToString(),
                             TotalPrice = (int)reader["TOTAL_PRICE"],
                             Tax = (int)reader["TAX"],
                             CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])
@@ -113,13 +115,12 @@ namespace ShoppingSite_a.DAO
                 if (order == null) return null;
 
                 // ② 明細情報の取得（productsテーブルと結合して商品名を取る）
-                
                 string detailSql = @"
                     SELECT d.*, p.PRODUCT_NAME 
                     FROM T_ORDER_DETAIL d
                     INNER JOIN products p ON d.PRODUCT_ID = p.PRODUCT_ID
                     WHERE d.ORDER_ID = @OrderId";
-                
+
                 SqlCommand cmdDetail = new SqlCommand(detailSql, conn);
                 cmdDetail.Parameters.AddWithValue("@OrderId", orderId);
 
@@ -139,24 +140,25 @@ namespace ShoppingSite_a.DAO
             return order;
         }
 
-        /* 購入履歴画面用：ログイン中の会員IDに紐づく注文履歴一覧を取得する（新しい順）*/
-        public List<OrderDTO> GetOrderHistoryByMemberId(string memberId)
+        /* 購入履歴画面用：ログイン中の宇宙会員IDに紐づく注文履歴一覧を取得する（新しい順）*/
+        // 引数の型名を memberId ➔ userId に変更！
+        public List<OrderDTO> GetOrderHistoryByUserId(string userId)
         {
             List<OrderDTO> historyList = new List<OrderDTO>();
 
-            // T_ORDER テーブルから指定した会員のデータを取得するSQL
+            //  SQLのカラム名を MEMBER_ID ➔ USER_ID に変更！
             string sql = @"
-                SELECT ORDER_ID, MEMBER_ID, TOTAL_PRICE, TAX, CREATED_AT 
+                SELECT ORDER_ID, USER_ID, TOTAL_PRICE, TAX, CREATED_AT 
                 FROM T_ORDER 
-                WHERE MEMBER_ID = @MemberId 
+                WHERE USER_ID = @UserId 
                 ORDER BY CREATED_AT DESC";
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    // 会員IDをバインド
-                    cmd.Parameters.AddWithValue("@MemberId", memberId);
+                    // パラメータを @UserId にバインド
+                    cmd.Parameters.AddWithValue("@UserId", userId);
 
                     conn.Open();
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -166,7 +168,8 @@ namespace ShoppingSite_a.DAO
                             OrderDTO order = new OrderDTO
                             {
                                 OrderId = Convert.ToInt32(reader["ORDER_ID"]),
-                                MemberId = reader["MEMBER_ID"].ToString(),
+                                // プロパティ名および読込先を UserId に！
+                                UserId = reader["USER_ID"].ToString(),
                                 TotalPrice = Convert.ToInt32(reader["TOTAL_PRICE"]),
                                 Tax = Convert.ToInt32(reader["TAX"]),
                                 CreatedAt = Convert.ToDateTime(reader["CREATED_AT"])
@@ -178,7 +181,5 @@ namespace ShoppingSite_a.DAO
             }
             return historyList;
         }
-
     }
-
 }

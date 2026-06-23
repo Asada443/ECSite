@@ -3,23 +3,32 @@ using ShoppingSite_a.DTO;
 using System;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System.Web.UI;
+
 namespace ShoppingSite_a.Member
 {
     public partial class Edit : BasePage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // バリデーションエラー時の動作を安定させるおまじない
+            this.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
+            if (CurrentUser == null)
+            {
+                Response.Redirect("~/Views/Login/Login.aspx");
+                return;
+            }
+
+            // 鉄則：最初の一回だけDBからデータを読み込む！
+            // これでバリデーションで弾かれて再表示されても値が消えない！
             if (!IsPostBack)
             {
-                txtMemberId.Text = CurrentUser.MemberId;
+                txtUserId.Text = CurrentUser.UserId;
                 txtPassword.Text = CurrentUser.Password;
-                txtLastName.Text = CurrentUser.LastName;
-                txtFirstName.Text = CurrentUser.FirstName;
-                txtAddress.Text = CurrentUser.Address;
-                txtMailAddress.Text = CurrentUser.MailAddress;
-                txtHomePlanet.Text = CurrentUser.HomePlanet;
-                ddlPreferredEnvironment.SelectedValue = CurrentUser.PreferredEnvironment;
-
+                txtUserName.Text = CurrentUser.UserName;
+                txtHometownPlanet.Text = CurrentUser.HometownPlanet;
+                ddlRecommendedEnvironment.SelectedValue = CurrentUser.RecommendedEnvironment;
             }
         }
 
@@ -27,132 +36,20 @@ namespace ShoppingSite_a.Member
         {
             lblError.Text = "";
 
-            // =========================
-            // ■ パスワードチェック
-            // =========================
+            // これがフロント側(Validator)の全チェック結果を受け取る魔法の1行！
+            if (!Page.IsValid) return;
 
-            if (string.IsNullOrEmpty(txtPassword.Text))
-            {
-                lblError.Text = "パスワードを入力してください";
-                return;
-            }
-
-            if (txtPassword.Text.Length < 8 ||
-                txtPassword.Text.Length > 32)
-            {
-                lblError.Text = "パスワードは8～32文字で入力してください";
-                return;
-            }
-
-            // 使用可能文字チェック
-            if (!Regex.IsMatch(
-                txtPassword.Text,
-                @"^[a-zA-Z0-9!-/:-@[-`{-~]+$"))
-            {
-                lblError.Text = "パスワードに使用できない文字が含まれています";
-                return;
-            }
-
-            // 英字必須
-            if (!Regex.IsMatch(txtPassword.Text, "[a-zA-Z]"))
-            {
-                lblError.Text = "パスワードは英字を含めてください";
-                return;
-            }
-
-            // 数字必須
-            if (!Regex.IsMatch(txtPassword.Text, "[0-9]"))
-            {
-                lblError.Text = "パスワードは数字を含めてください";
-                return;
-            }
-
-            // =========================
-            // ■ 氏名チェック
-            // =========================
-
-            if (string.IsNullOrEmpty(txtLastName.Text))
-            {
-                lblError.Text = "姓を入力してください";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(txtFirstName.Text))
-            {
-                lblError.Text = "名を入力してください";
-                return;
-            }
-
-            // =========================
-            // ■ 住所チェック
-            // =========================
-
-            if (string.IsNullOrEmpty(txtAddress.Text))
-            {
-                lblError.Text = "住所を入力してください";
-                return;
-            }
-
-            // =========================
-            // ■ メールアドレスチェック
-            // =========================
-
-            if (string.IsNullOrEmpty(txtMailAddress.Text))
-            {
-                lblError.Text = "メールアドレスを入力してください";
-                return;
-            }
-
-            if (txtMailAddress.Text.Length > 254)
-            {
-                lblError.Text = "メールアドレスは254文字以内で入力してください";
-                return;
-            }
-
-            if (txtMailAddress.Text.Count(c => c == '@') != 1)
-            {
-                lblError.Text = "メールアドレスの形式が正しくありません";
-                return;
-            }
-
-            int atIndex = txtMailAddress.Text.IndexOf('@');
-
-            if (atIndex <= 0 || atIndex >= txtMailAddress.Text.Length - 1)
-            {
-                lblError.Text = "メールアドレスの形式が正しくありません";
-                return;
-            }
-
-            string[] parts = txtMailAddress.Text.Split('@');
-            string domain = parts[1];
-
-            if (!domain.Contains("."))
-            {
-                lblError.Text = "メールアドレスの形式が正しくありません";
-                return;
-            }
-
-            if (string.IsNullOrEmpty(ddlPreferredEnvironment.SelectedValue))
-            {
-                lblError.Text = "好みの環境を選択してください";
-                return;
-            }
-
+            // バリデーションが通ったら、データの詰め替えと遷移
             MemberDTO member = new MemberDTO();
-
-            member.MemberId = txtMemberId.Text;
+            member.UserId = txtUserId.Text;
             member.Password = txtPassword.Text;
-            member.LastName = txtLastName.Text;
-            member.FirstName = txtFirstName.Text;
-            member.Address = txtAddress.Text;
-            member.MailAddress = txtMailAddress.Text;
-            member.HomePlanet = txtHomePlanet.Text;
-            member.PreferredEnvironment = ddlPreferredEnvironment.SelectedValue;
+            member.UserName = txtUserName.Text;
+            member.HometownPlanet = txtHometownPlanet.Text;
+            member.RecommendedEnvironment = ddlRecommendedEnvironment.SelectedValue;
+            member.Role = CurrentUser.Role;
 
-            member.Role = CurrentUser.Role;  /*Update後もUser→Userを維持するため*/
-
+            // 確認画面への引き渡し
             Session["TempEdit"] = member;
-
             Response.Redirect("~/Views/Member/EditConfirm.aspx");
         }
 

@@ -24,6 +24,15 @@ namespace ShoppingSite_a.Views.Admin
         protected global::System.Web.UI.HtmlControls.HtmlForm form1;
 
         /// <summary>
+        /// valSummary コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
+
+        /// <summary>
         /// lblMessage コントロール。
         /// </summary>
         /// <remarks>
@@ -51,6 +60,15 @@ namespace ShoppingSite_a.Views.Admin
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
+        /// rfvName コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvName;
+
+        /// <summary>
         /// txtPrice コントロール。
         /// </summary>
         /// <remarks>
@@ -58,6 +76,24 @@ namespace ShoppingSite_a.Views.Admin
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPrice;
+
+        /// <summary>
+        /// rfvPrice コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPrice;
+
+        /// <summary>
+        /// cvPrice コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvPrice;
 
         /// <summary>
         /// txtStock コントロール。
@@ -69,6 +105,24 @@ namespace ShoppingSite_a.Views.Admin
         protected global::System.Web.UI.WebControls.TextBox txtStock;
 
         /// <summary>
+        /// rfvStock コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvStock;
+
+        /// <summary>
+        /// cvStock コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvStock;
+
+        /// <summary>
         /// txtPlanet コントロール。
         /// </summary>
         /// <remarks>
@@ -76,6 +130,15 @@ namespace ShoppingSite_a.Views.Admin
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtPlanet;
+
+        /// <summary>
+        /// rfvPlanet コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPlanet;
 
         /// <summary>
         /// txtDescription コントロール。
@@ -87,6 +150,15 @@ namespace ShoppingSite_a.Views.Admin
         protected global::System.Web.UI.WebControls.TextBox txtDescription;
 
         /// <summary>
+        /// rfvDesc コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvDesc;
+
+        /// <summary>
         /// ddlRecommendedEnvironment コントロール。
         /// </summary>
         /// <remarks>
@@ -94,6 +166,15 @@ namespace ShoppingSite_a.Views.Admin
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlRecommendedEnvironment;
+
+        /// <summary>
+        /// rfvEnv コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEnv;
 
         /// <summary>
         /// btnUpdate コントロール。

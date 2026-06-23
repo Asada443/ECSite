@@ -1,14 +1,16 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="ProductList.aspx.cs" Inherits="ShoppingSite_a.Product.ProductList" %>
-
+<%@ Register Src="~/Header.ascx" TagPrefix="uc" TagName="MyHeader" %>
 <!DOCTYPE html>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title></title>
+     <link href="<%= ResolveUrl("~/CSS/MyStyle.css") %>" rel="stylesheet" type="text/css" />
+    <title>商品一覧</title>
 </head>
 <body>
     <form id="form1" runat="server">
+        <uc:MyHeader runat="server" ID="ucHeader" />
 
      <asp:HyperLink
     ID="hlTop"
@@ -17,7 +19,7 @@
     Text="← トップへ戻る" />
 <br /><br />
     <h2>商品一覧</h2>
-
+<div class="sort-container">
     <asp:DropDownList ID="ddlSort" runat="server">
     <asp:ListItem Text="並び替え" Value="NEW" />
     <asp:ListItem Text="価格（安い順）" Value="PRICE_ASC" />
@@ -29,6 +31,7 @@
 <asp:Button ID="btnSort" runat="server"
     Text="適用"
     OnClick="btnSort_Click" />
+</div>
 
     <!-- エラー表示（必要なら） -->
     <asp:Label ID="lblError" runat="server" ForeColor="Red" />
@@ -46,9 +49,8 @@
 
         <ItemTemplate>
 
-            <div style="border:1px solid #ccc; margin:10px; padding:10px; width:250px; float:left;">
+             <div class="product-card"> 
 
-                <!-- 画像 -->
                 <asp:Image 
                     ID="imgProduct" 
                     runat="server"
@@ -77,14 +79,16 @@
 
                 <br />
 
-                <!-- 詳細ボタン（後で機能追加） -->
+                <!-- 詳細ボタン -->
+            
                 <asp:Button 
                     ID="btnDetail"
                     runat="server"
                     Text="詳細"
+                    CssClass="btn-detail"
                     CommandName="Detail"
                     CommandArgument='<%# Eval("ProductId") %>' />
-
+            
             </div>
 
         </ItemTemplate>

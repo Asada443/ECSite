@@ -14,16 +14,17 @@ namespace ShoppingSite_a
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
-            string memberId = txtMemberId.Text;
+            // 変数名を memberId から userId に統一！
+            string userId = txtMemberId.Text;
             string password = txtPassword.Text;
 
             // --- 入力チェック ---
-            if (string.IsNullOrEmpty(memberId) && string.IsNullOrEmpty(password))
+            if (string.IsNullOrEmpty(userId) && string.IsNullOrEmpty(password))
             {
                 lblError.Text = "会員IDとパスワードを入力してください";
                 return;
             }
-            if (string.IsNullOrEmpty(memberId))
+            if (string.IsNullOrEmpty(userId))
             {
                 lblError.Text = "会員IDを入力してください";
                 return;
@@ -41,13 +42,13 @@ namespace ShoppingSite_a
 
             // --- 認証処理 ---
             MemberDAO dao = new MemberDAO();
-            MemberDTO member = dao.Login(memberId, password);
+            
+            MemberDTO member = dao.Login(userId, password);
 
             if (member != null)
             {
                 Session["User"] = member;
 
-                
                 string returnUrl = null;
                 foreach (string key in Request.QueryString.AllKeys)
                 {
@@ -63,14 +64,13 @@ namespace ShoppingSite_a
                     /* カートから来た場合は、ここ（購入確認画面）にジャンプ */
                     Response.Redirect(returnUrl);
                 }
-              
                 else
                 {
-                    // 権限（ROLE）によって遷移先を切り替える
+                    //  支配者（ROLE）によって遷移先を切り替える判定
                     if (member.Role == "Admin")
                     {
-                        // 管理者の場合は、商品管理一覧画面へ直行！
-                        Response.Redirect("~/Views/Admin/ProductManage.aspx");
+                        // 
+                        Response.Redirect("~/Views/Member/Home.aspx");
                     }
                     else
                     {
@@ -83,8 +83,6 @@ namespace ShoppingSite_a
             {
                 Response.Redirect("~/Views/Login/Error.aspx");
             }
-
-
         }
     }
 }

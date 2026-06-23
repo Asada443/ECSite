@@ -1,30 +1,15 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Top.aspx.cs" Inherits="ShoppingSite_a.Views.Home.Top" %>
-
+<%@ Register Src="~/Header.ascx" TagPrefix="uc" TagName="MyHeader" %>
 <!DOCTYPE html><html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>宇宙移住ナビ - トップ</title>
+    <link href="<%= ResolveUrl("~/CSS/MyStyle.css") %>" rel="stylesheet" type="text/css" />
+    <title>宇宙移住センター - トップ</title>
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <asp:TextBox ID="txtKeyword" runat="server" />
-            <asp:Button ID="btnSearch" runat="server" Text="検索" OnClick ="btnSearch_Click"  />
-            <asp:Button ID="btnProductList" runat="server" Text="商品一覧" OnClick="btnProductList_Click" />
-            
-            &nbsp;&nbsp;&nbsp;&nbsp; <asp:Panel ID="pnlGuestHeader" runat="server" RenderOuterTable="false">
-                <asp:Button ID="btnLogin" runat="server" Text="ログイン" OnClick="btnLogin_Click" />
-            </asp:Panel>
-
-            <asp:Panel ID="pnlMemberHeader" runat="server" RenderOuterTable="false">
-                <asp:Label ID="lblWelcome" runat="server" Text="ようこそ、〇〇さん！" Font-Bold="true"></asp:Label>
-                &nbsp;
-                <asp:Button ID="btnMyPage" runat="server" Text="マイページ" OnClick="btnMyPage_Click" />
-                &nbsp;
-                <asp:Button ID="btnLogout" runat="server" Text="ログアウト" OnClick="btnLogout_Click" />
-            </asp:Panel>
-            
-            <hr /> <br />
+        <uc:MyHeader runat="server" ID="ucHeader" />
+       
 
             <h3><asp:Label ID="lblListTitle" runat="server" Text="商品一覧"></asp:Label></h3>
 
@@ -64,7 +49,7 @@
                 </FooterTemplate>
             </asp:Repeater>
             
-            </div>
+            
     </form>
 </body>
 </html>

@@ -11,6 +11,7 @@ namespace ShoppingSite_a
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            Response.Redirect("/Views/Home/Top.aspx");
 
         }
     }

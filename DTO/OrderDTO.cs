@@ -7,7 +7,10 @@ namespace ShoppingSite_a.DTO
     public class OrderDTO
     {
         public int OrderId { get; set; }        // 購入番号 (ORDER_ID)
-        public string MemberId { get; set; }    // 会員ID (MEMBER_ID)
+
+        
+        public string UserId { get; set; }      // 宇宙会員ID (USER_ID)
+
         public int TotalPrice { get; set; }     // 合計金額 (TOTAL_PRICE)
         public int Tax { get; set; }            // 消費税 (TAX)
         public DateTime CreatedAt { get; set; } // 購入日時 (CREATED_AT)

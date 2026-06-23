@@ -1,76 +1,66 @@
 ﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" Inherits="ShoppingSite_a.Member.Register" %>
-
+<%@ Register Src="~/Header.ascx" TagPrefix="uc" TagName="MyHeader" %>
 <!DOCTYPE html>
-
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head runat="server">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <title></title>
+     <link href="<%= ResolveUrl("~/CSS/MyStyle.css") %>" rel="stylesheet" type="text/css" />
+    <title>会員情報登録</title>
 </head>
 <body>
-    <form id="form1" runat="server" novalidate>
-        <h2>会員情報登録</h2>
-        <asp:Label ID="lblError"
-            runat="server"
-            ForeColor="Red" />
+    <form id="form1" runat="server" novalidate="novalidate">
+        <uc:MyHeader runat="server" ID="ucHeader" />
 
-        <br />
-        <br />
-        <p>
-            会員ID:
-            <asp:TextBox ID="txtMemberId" runat="server" autocomplete="off" />
-        </p>
-        <p>
-            パスワード:
-            <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" autocomplete="new-password" />
-        </p>
-
-        <p>
-            姓:
-            <asp:TextBox ID="txtLastName" runat="server" />
-        </p>
-
-        <p>
-            名:
-            <asp:TextBox ID="txtFirstName" runat="server" />
-        </p>
-
-        <p>
-            住所:
-            <asp:TextBox ID="txtAddress" runat="server" Width="300" />
-        </p>
-
-        <p>
-            メールアドレス:
-            <asp:TextBox ID="txtMailAddress" runat="server" Width="300" />
+        <div class="page-center-wrapper">
+        <div class="form-card">
+            <h2>会員情報登録</h2>
             
+            <asp:Label ID="lblError" runat="server" ForeColor="Red" />
+            <asp:ValidationSummary ID="valSummary" runat="server" ForeColor="Red" HeaderText="入力内容に不備があります：" />
 
-        </p>
+            <div class="form-group">
+                <asp:Label ID="lblUserId" runat="server" Text="会員ID：" />
+                <asp:TextBox ID="txtUserId" runat="server" CssClass="input-field" autocomplete="off" />
+                <asp:RequiredFieldValidator ID="rfvUserId" runat="server" ControlToValidate="txtUserId" ErrorMessage="宇宙会員IDを入力してください" ForeColor="Red" Text="*" Display="Dynamic" />
+            </div>
 
-        <p>
-            故郷の星:
-            <asp:TextBox ID="txtHomePlanet" runat="server" Width="300" />
-        </p>
+            <div class="form-group">
+                <asp:Label ID="lblPassword" runat="server" Text="パスワード：" />
+                <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-field" autocomplete="new-password" />
+                <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="パスワードを入力してください" ForeColor="Red" Text="*" Display="Dynamic" />
+            </div>
 
+            <div class="form-group">
+                <asp:Label ID="lblUserName" runat="server" Text="お名前：" />
+                <asp:TextBox ID="txtUserName" runat="server" CssClass="input-field" />
+                <asp:RequiredFieldValidator ID="rfvUserName" runat="server" ControlToValidate="txtUserName" ErrorMessage="お名前を入力してください" ForeColor="Red" Text="*" Display="Dynamic" />
+            </div>
 
-        <p>
-            好みの環境:
-            <asp:DropDownList ID="ddlPreferredEnvironment" runat="server">
-                <asp:ListItem Text="選択してください" Value="" />
-                <asp:ListItem Text="自然豊か" Value="自然豊か" />
-                <asp:ListItem Text="都市型" Value="都市型" />
-                <asp:ListItem Text="寒冷" Value="寒冷" />
-                <asp:ListItem Text="温暖" Value="温暖" />
-                <asp:ListItem Text="乾燥" Value="乾燥" />
-            </asp:DropDownList>
-        </p>
+            <div class="form-group">
+                <asp:Label ID="lblHometown" runat="server" Text="故郷の星：" />
+                <asp:TextBox ID="txtHometownPlanet" runat="server" CssClass="input-field" />
+                <asp:RequiredFieldValidator ID="rfvHometownPlanet" runat="server" ControlToValidate="txtHometownPlanet" ErrorMessage="故郷の星を入力してください" ForeColor="Red" Text="*" Display="Dynamic" />
+            </div>
 
+            <div class="form-group">
+                <asp:Label ID="lblEnvironment" runat="server" Text="ご希望の移住環境：" />
+                <asp:DropDownList ID="ddlRecommendedEnvironment" runat="server" CssClass="input-field">
+                    <asp:ListItem Text="選択してください" Value="" />
+                    <asp:ListItem Text="自然豊か" Value="自然豊か" />
+                    <asp:ListItem Text="都市型" Value="都市型" />
+                    <asp:ListItem Text="寒冷" Value="寒冷" />
+                    <asp:ListItem Text="温暖" Value="温暖" />
+                    <asp:ListItem Text="乾燥" Value="乾燥" />
+                </asp:DropDownList>
+                <asp:RequiredFieldValidator ID="rfvEnvironment" runat="server" ControlToValidate="ddlRecommendedEnvironment" ErrorMessage="ご希望の移住環境を選択してください" ForeColor="Red" Text="*" Display="Dynamic" />
+            </div>
 
-        <asp:Button ID="btnConfirm" runat="server" Text="確認" OnClick="btnConfirm_Click" />
-
-        <asp:Button ID="btnBack" runat="server" Text="戻る" OnClick="btnBack_Click" />
-
-
+            <div class="form-actions">
+                <asp:Button ID="btnConfirm" runat="server" Text="確認" OnClick="btnConfirm_Click" CssClass="btn-detail" />
+                <asp:Button ID="btnBack" runat="server" Text="戻る" OnClick="btnBack_Click" CausesValidation="false" CssClass="btn-detail" />
+            </div>
+        </div>
+    </div>
     </form>
 </body>
 </html>

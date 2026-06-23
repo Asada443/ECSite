@@ -56,7 +56,7 @@ namespace ShoppingSite_a.Views.Order
             OrderDTO order = new OrderDTO();
 
             // BasePageからログイン中のユーザーID（MemberId）を取得してセット
-            order.MemberId = CurrentUser.MemberId;
+            order.UserId = CurrentUser.UserId;
 
             int totalProductPrice = 0;
 

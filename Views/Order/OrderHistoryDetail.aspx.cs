@@ -48,7 +48,7 @@ namespace ShoppingSite_a.Views.Order
                 else
                 {
                     // 不正なパラメータでアクセスされた場合は履歴一覧に戻す
-                    Response.Redirect("/Views/Oreder/OrderHistory.aspx");
+                    Response.Redirect("/Views/Order/OrderHistory.aspx");
                 }
             }
         }

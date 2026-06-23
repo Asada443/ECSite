@@ -2,13 +2,6 @@
 using ShoppingSite_a.DAO;
 using ShoppingSite_a.DTO;
 using System;
-using System.Collections.Generic;
-using System.Configuration;
-using System.Data.SqlClient;
-using System.Linq;
-using System.Web;
-using System.Web.UI;
-using System.Web.UI.WebControls;
 
 namespace ShoppingSite_a.Member
 {
@@ -16,6 +9,7 @@ namespace ShoppingSite_a.Member
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // 不正アクセス防止（修正用の一時セッションがなければ入力画面へ強制送還）
             if (Session["TempEdit"] == null)
             {
                 Response.Redirect("~/Views/Member/Edit.aspx");
@@ -26,19 +20,17 @@ namespace ShoppingSite_a.Member
             {
                 MemberDTO member = Session["TempEdit"] as MemberDTO;
 
-                lblMemberId.Text = member.MemberId;
-                lblLastName.Text = member.LastName;
-                lblFirstName.Text = member.FirstName;
-                lblAddress.Text = member.Address;
-                lblMailAddress.Text = member.MailAddress;
-                lblHomePlanet.Text = member.HomePlanet;
-                lblPreferredEnvironment.Text = member.PreferredEnvironment;
+                
+                lblUserId.Text = member.UserId;
+                lblUserName.Text = member.UserName;
+                lblHometownPlanet.Text = member.HometownPlanet;
+                lblRecommendedEnvironment.Text = member.RecommendedEnvironment;
             }
-
         }
 
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
+            // ボタンクリック時もセッションのダブルチェック
             if (Session["TempEdit"] == null)
             {
                 Response.Redirect("~/Views/Member/Edit.aspx");
@@ -47,20 +39,25 @@ namespace ShoppingSite_a.Member
 
             MemberDTO member = Session["TempEdit"] as MemberDTO;
 
+            // MemberDAOを呼び出して、UPDATE
             MemberDAO dao = new MemberDAO();
             dao.Update(member);
 
-            Session["User"] = dao.GetMember(member.MemberId);
+            // ログイン中セッション（CurrentUserの中身）を、今DBに書き込んだ最新情報で上書き
+            Session["User"] = dao.GetMember(member.UserId);
+
+            // 修正用の一時セッションはお掃除
             Session.Remove("TempEdit");
 
-
+            // 修正完了画面へ
             Response.Redirect("~/Views/Member/EditComplete.aspx");
         }
 
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            // 入力画面へ戻る
             Response.Redirect("~/Views/Member/Edit.aspx");
         }
     }
 }
-    
+

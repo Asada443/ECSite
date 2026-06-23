@@ -10,6 +10,9 @@ namespace ShoppingSite_a.Views.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            // Validatorを正しく動かすためのおまじない
+            this.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
+
             // 画面がボタンのクリック等ではなく、最初に開かれた時だけ実行する
             if (!IsPostBack)
             {
@@ -54,24 +57,8 @@ namespace ShoppingSite_a.Views.Admin
         /// </summary>
         protected void btnUpdate_Click(object sender, EventArgs e)
         {
-            // 1. 入力チェック（バリデーション）※新規登録と同じチェック
-            if (string.IsNullOrWhiteSpace(txtProductName.Text))
-            {
-                lblMessage.Text = "商品名を入力してください。";
-                return;
-            }
-
-            if (!int.TryParse(txtPrice.Text, out int price) || price < 0)
-            {
-                lblMessage.Text = "価格には0以上の正しい数値を入力してください。";
-                return;
-            }
-
-            if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
-            {
-                lblMessage.Text = "在庫数には0以上の正しい数値を入力してください。";
-                return;
-            }
+            // 1. バリデーション結果を確認 (Validatorが1つでもエラーならここで停止！)
+            if (!Page.IsValid) return;
 
             try
             {
@@ -79,11 +66,12 @@ namespace ShoppingSite_a.Views.Admin
                 int productId = Convert.ToInt32(hfProductId.Value);
 
                 // 3. 画面の入力値を DTO オブジェクトに詰め替える
+                // Validatorが数値であることを保証済みなので、安心して変換する
                 ProductDTO product = new ProductDTO();
                 product.ProductId = productId; // これがないと誰を更新していいかSQLが迷子になります
                 product.ProductName = txtProductName.Text.Trim();
-                product.Price = price;
-                product.Stock = stock;
+                product.Price = int.Parse(txtPrice.Text);
+                product.Stock = int.Parse(txtStock.Text);
                 product.Planet = txtPlanet.Text.Trim();
                 product.Description = txtDescription.Text.Trim();
                 product.RecommendedEnvironment = ddlRecommendedEnvironment.SelectedValue;
@@ -97,6 +85,7 @@ namespace ShoppingSite_a.Views.Admin
             }
             catch (Exception ex)
             {
+                // 万が一データベースエラーなどが起きた場合の対策
                 lblMessage.Text = "更新中にエラーが発生しました: " + ex.Message;
             }
         }
@@ -106,6 +95,7 @@ namespace ShoppingSite_a.Views.Admin
         /// </summary>
         protected void btnBack_Click(object sender, EventArgs e)
         {
+            // 何もせず一覧画面にジャンプする
             Response.Redirect("ProductManage.aspx");
         }
     }

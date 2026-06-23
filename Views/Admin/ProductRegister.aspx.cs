@@ -14,60 +14,39 @@ namespace ShoppingSite_a.Views.Admin
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
+            // Validatorを正しく動かすためのおまじない
+            this.UnobtrusiveValidationMode = UnobtrusiveValidationMode.None;
         }
 
-        /// <summary>
-        /// 「この内容で登録する」ボタンが押された時の処理
-        /// </summary>
         protected void btnRegister_Click(object sender, EventArgs e)
         {
-            // 1. 入力チェック（バリデーション）
-            if (string.IsNullOrWhiteSpace(txtProductName.Text))
-            {
-                lblMessage.Text = "商品名を入力してください。";
-                return;
-            }
-
-            if (!int.TryParse(txtPrice.Text, out int price) || price < 0)
-            {
-                lblMessage.Text = "価格には0以上の正しい数値を入力してください。";
-                return;
-            }
-
-            if (!int.TryParse(txtStock.Text, out int stock) || stock < 0)
-            {
-                lblMessage.Text = "在庫数には0以上の正しい数値を入力してください。";
-                return;
-            }
+            // 1.  バリデーション結果を確認 (Validatorが1つでもエラーならここで停止！)
+            if (!Page.IsValid) return;
 
             try
             {
                 // 2. 画面の入力値を DTO オブジェクトに詰め替える
+                // Validatorが「数値であること」を保証済みなので、int.Parseで安全に変換できる
                 ProductDTO product = new ProductDTO();
                 product.ProductName = txtProductName.Text.Trim();
-                product.Price = price;
-                product.Stock = stock;
+                product.Price = int.Parse(txtPrice.Text);
+                product.Stock = int.Parse(txtStock.Text);
                 product.Planet = txtPlanet.Text.Trim();
                 product.Description = txtDescription.Text.Trim();
-                
-
                 product.RecommendedEnvironment = ddlRecommendedEnvironment.SelectedValue;
 
-                // 3. DAOを呼び出してデータベースに保存（INSERT）する
+                // 3. DAOを呼び出してデータベースに保存
                 ProductDAO dao = new ProductDAO();
                 dao.Insert(product);
 
-                // 4. 登録が成功したら、商品管理一覧画面（ProductManage.aspx）へ戻る
+                // 4. 成功したら一覧へ
                 Response.Redirect("ProductManage.aspx");
             }
             catch (Exception ex)
             {
-                // 万が一データベースエラーなどが起きた場合の対策
                 lblMessage.Text = "登録中にエラーが発生しました: " + ex.Message;
             }
         }
-
         /// <summary>
         /// 「商品管理一覧に戻る」ボタンが押された時の処理
         /// </summary>

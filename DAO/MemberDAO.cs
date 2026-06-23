@@ -7,138 +7,110 @@ namespace ShoppingSite_a.DAO
 {
     public class MemberDAO
     {
+        // 会員登録 (Insert)
         public void Insert(MemberDTO member)
         {
-            string connStr =
-                ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
                 string sql = @"
-            INSERT INTO users
-            (MEMBER_ID, PASSWORD, LAST_NAME, FIRST_NAME, ADDRESS,ROLE, MAIL_ADDRESS, HOME_PLANET, PREFERRED_ENVIRONMENT)
-            VALUES
-            (@MemberId, @Password, @LastName, @FirstName, @Address, @Role, @MailAddress, @HomePlanet, @PreferredEnvironment)
-        ";
+                    INSERT INTO Users
+                    (UserId, Password, UserName, HometownPlanet, RecommendedEnvironment, Role)
+                    VALUES
+                    (@UserId, @Password, @UserName, @HometownPlanet, @RecommendedEnvironment, @Role)
+                ";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@MemberId", member.MemberId);
+                    cmd.Parameters.AddWithValue("@UserId", member.UserId);
                     cmd.Parameters.AddWithValue("@Password", member.Password);
-                    cmd.Parameters.AddWithValue("@LastName", member.LastName);
-                    cmd.Parameters.AddWithValue("@FirstName", member.FirstName);
-                    cmd.Parameters.AddWithValue("@Address", member.Address);
+                    cmd.Parameters.AddWithValue("@UserName", member.UserName);
+                    cmd.Parameters.AddWithValue("@HometownPlanet", member.HometownPlanet);
+                    cmd.Parameters.AddWithValue("@RecommendedEnvironment", member.RecommendedEnvironment);
                     cmd.Parameters.AddWithValue("@Role", member.Role);
-                    cmd.Parameters.AddWithValue("@MailAddress", member.MailAddress);
-                    cmd.Parameters.AddWithValue("@HomePlanet", member.HomePlanet);
-                    cmd.Parameters.AddWithValue("@PreferredEnvironment", member.PreferredEnvironment);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-        public void Delete(string memberId)
-        {
-            string connStr =
-                ConfigurationManager
-                .ConnectionStrings["ShoppingSiteDB"]
-                .ConnectionString;
-
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
-            {
-                conn.Open();
-
-                string sql = @"
-                    DELETE FROM users
-                    WHERE MEMBER_ID = @MemberId
-                ";
-
-                using (SqlCommand cmd =
-                    new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue(
-                        "@MemberId",
-                        memberId);
 
                     cmd.ExecuteNonQuery();
                 }
             }
         }
 
-        public void Update(
-            MemberDTO member)
+        // 会員削除 (Delete)
+        public void Delete(string userId)
         {
-            string connStr =
-                ConfigurationManager
-                .ConnectionStrings["ShoppingSiteDB"]
-                .ConnectionString;
-
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
-            {
-                conn.Open();
-
-                string sql = @"
-                    UPDATE users
-                    SET
-                        PASSWORD = @Password,
-                        LAST_NAME = @LastName,
-                        FIRST_NAME = @FirstName,
-                        ADDRESS = @Address,
-                        MAIL_ADDRESS = @MailAddress,
-                            HOME_PLANET = @HomePlanet,
-                            PREFERRED_ENVIRONMENT = @PreferredEnvironment
-                    WHERE MEMBER_ID = @MemberId
-                ";
-
-                using (SqlCommand cmd =
-                    new SqlCommand(sql, conn))
-                {
-                    cmd.Parameters.AddWithValue("@MemberId", member.MemberId);
-                    cmd.Parameters.AddWithValue("@Password", member.Password);
-                    cmd.Parameters.AddWithValue("@LastName", member.LastName);
-                    cmd.Parameters.AddWithValue("@FirstName", member.FirstName);
-                    cmd.Parameters.AddWithValue("@Address", member.Address);
-                    cmd.Parameters.AddWithValue("@MailAddress", member.MailAddress);
-                    cmd.Parameters.AddWithValue("@HomePlanet", member.HomePlanet);
-                    cmd.Parameters.AddWithValue("@PreferredEnvironment", member.PreferredEnvironment);
-
-                    cmd.ExecuteNonQuery();
-                }
-            }
-        }
-
-      
-        public MemberDTO Login(string memberId, string password)
-        {
-            string connStr =
-                ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
+            string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
 
             using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
                 string sql = @"
-          SELECT MEMBER_ID,
-       PASSWORD,
-       LAST_NAME,
-       FIRST_NAME,
-       ADDRESS,
-       MAIL_ADDRESS,
-       ROLE,
-       HOME_PLANET,
-       PREFERRED_ENVIRONMENT
-FROM users
-WHERE MEMBER_ID = @MemberId
-AND PASSWORD = @Password
-        ";
+                    DELETE FROM Users
+                    WHERE UserId = @UserId
+                ";
 
                 using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue("@MemberId", memberId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // 会員情報修正 (Update)
+        public void Update(MemberDTO member)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                string sql = @"
+                    UPDATE Users
+                    SET
+                        Password = @Password,
+                        UserName = @UserName,
+                        HometownPlanet = @HometownPlanet,
+                        RecommendedEnvironment = @RecommendedEnvironment
+                    WHERE UserId = @UserId
+                ";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", member.UserId);
+                    cmd.Parameters.AddWithValue("@Password", member.Password);
+                    cmd.Parameters.AddWithValue("@UserName", member.UserName);
+                    cmd.Parameters.AddWithValue("@HometownPlanet", member.HometownPlanet);
+                    cmd.Parameters.AddWithValue("@RecommendedEnvironment", member.RecommendedEnvironment);
+
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        // ログイン認証 (Login)
+        public MemberDTO Login(string userId, string password)
+        {
+            string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
+
+            using (SqlConnection conn = new SqlConnection(connStr))
+            {
+                conn.Open();
+
+                string sql = @"
+                    SELECT UserId, Password, UserName, HometownPlanet, RecommendedEnvironment, Role
+                    FROM Users
+                    WHERE UserId = @UserId
+                    AND Password = @Password
+                ";
+
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
                     cmd.Parameters.AddWithValue("@Password", password);
 
                     using (SqlDataReader reader = cmd.ExecuteReader())
@@ -147,105 +119,66 @@ AND PASSWORD = @Password
                         {
                             MemberDTO member = new MemberDTO();
 
-                            member.MemberId = reader["MEMBER_ID"].ToString();
-                            member.Password = reader["PASSWORD"].ToString();
-                            member.LastName = reader["LAST_NAME"].ToString();
-                            member.FirstName = reader["FIRST_NAME"].ToString();
-                            member.Address = reader["ADDRESS"].ToString();
-                            member.MailAddress = reader["MAIL_ADDRESS"].ToString();
-                            member.Role = reader["ROLE"].ToString(); 
-                            member.HomePlanet = reader["HOME_PLANET"].ToString();
-                            member.PreferredEnvironment = reader["PREFERRED_ENVIRONMENT"].ToString();
+                            member.UserId = reader["UserId"].ToString();
+                            member.Password = reader["Password"].ToString();
+                            member.UserName = reader["UserName"].ToString();
+                            member.HometownPlanet = reader["HometownPlanet"].ToString();
+                            member.RecommendedEnvironment = reader["RecommendedEnvironment"].ToString();
+                            member.Role = reader["Role"].ToString();
 
                             return member;
                         }
                     }
                 }
             }
-
             return null;
         }
 
-        public MemberDTO GetMember(string memberId)
+        // 1件の会員情報を取得 (GetMember)
+        public MemberDTO GetMember(string userId)
         {
+            string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
 
-            string connStr =
-                ConfigurationManager
-                .ConnectionStrings["ShoppingSiteDB"]
-                .ConnectionString;
-
-            using (SqlConnection conn =
-                new SqlConnection(connStr))
+            using (SqlConnection conn = new SqlConnection(connStr))
             {
                 conn.Open();
 
                 string sql = @"
-            SELECT
-                MEMBER_ID,
-        PASSWORD,
-        LAST_NAME,
-        FIRST_NAME,
-        ADDRESS,
-        MAIL_ADDRESS,
-        ROLE,
-        HOME_PLANET,
-        PREFERRED_ENVIRONMENT
-            FROM users
-            WHERE MEMBER_ID = @MemberId
-        ";
+                    SELECT UserId, Password, UserName, HometownPlanet, RecommendedEnvironment, Role
+                    FROM Users
+                    WHERE UserId = @UserId
+                ";
 
-                using (SqlCommand cmd =
-                    new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    cmd.Parameters.AddWithValue(
-                        "@MemberId",
-                        memberId);
+                    cmd.Parameters.AddWithValue("@UserId", userId);
 
-                    using (SqlDataReader reader =
-                        cmd.ExecuteReader())
+                    using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         if (reader.Read())
                         {
-                            MemberDTO member =
-                                new MemberDTO();
+                            MemberDTO member = new MemberDTO();
 
-                            member.MemberId =
-                                reader["MEMBER_ID"].ToString();
-
-                            member.Password = reader["PASSWORD"].ToString();
-
-                            member.LastName =
-                                reader["LAST_NAME"].ToString();
-
-                            member.FirstName =
-                                reader["FIRST_NAME"].ToString();
-
-                            member.Address = reader["ADDRESS"].ToString();
-
-                            member.MailAddress = reader["MAIL_ADDRESS"].ToString();
-
-                            member.Role = reader["ROLE"].ToString();
-
-                            member.HomePlanet = reader["HOME_PLANET"].ToString();
-
-                            member.PreferredEnvironment = reader["PREFERRED_ENVIRONMENT"].ToString();
+                            
+                            member.UserId = reader["UserId"].ToString();
+                            member.Password = reader["Password"].ToString();
+                            member.UserName = reader["UserName"].ToString();
+                            member.HometownPlanet = reader["HometownPlanet"].ToString();
+                            member.RecommendedEnvironment = reader["RecommendedEnvironment"].ToString();
+                            member.Role = reader["Role"].ToString();
 
                             return member;
                         }
                     }
                 }
             }
-
-
-
-
             return null;
         }
 
-        public bool Exists(string memberId)
+        //  重複チェック (Exists)
+        public bool Exists(string userId)
         {
-            MemberDTO member = GetMember(memberId);
-
+            MemberDTO member = GetMember(userId);
             return member != null;
         }
     }
