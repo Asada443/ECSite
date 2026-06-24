@@ -22,7 +22,7 @@
             <asp:Button ID="btnProductManage" runat="server" Text="商品管理" Visible="false" OnClick="btnProductManage_Click" CssClass="btn-detail" />
             <asp:Button ID="btnDelete" runat="server" Text="退会する" OnClick="btnDelete_Click" CssClass="btn-detail btn-danger" />
             
-            <asp:Button ID="btnLogout" runat="server" Text="ログアウト" OnClick="btnLogout_Click" CssClass="btn-detail btn-logout" />
+            <asp:Button ID="btnLogout" runat="server" Text="ログアウト" OnClick="btnLogout_Click" OnClientClick="return confirm('ログアウトしますか？');"　CssClass="btn-detail btn-logout" />
         </div>
     </div>
 </div>

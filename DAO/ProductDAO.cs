@@ -248,7 +248,7 @@ namespace ShoppingSite_a.DAO
                     cmd.Parameters.AddWithValue("@planet", p.Planet);
                     cmd.Parameters.AddWithValue("@stock", p.Stock);
                     cmd.Parameters.AddWithValue("@description", p.Description ?? "");
-                    cmd.Parameters.AddWithValue("@imagePath", "");
+                    cmd.Parameters.AddWithValue("@imagePath", p.ImagePath);
                     cmd.Parameters.AddWithValue("@recommendedEnvironment", p.RecommendedEnvironment ?? "");
                     cmd.ExecuteNonQuery();
                 }
@@ -266,7 +266,7 @@ namespace ShoppingSite_a.DAO
             {
                 string sql = @"
                     UPDATE products
-                    SET PRODUCT_NAME = @ProductName, PRICE = @Price, STOCK = @Stock, PLANET = @Planet, DESCRIPTION = @Description, RECOMMENDED_ENVIRONMENT = @RecommendedEnvironment
+                    SET PRODUCT_NAME = @ProductName, PRICE = @Price, STOCK = @Stock, PLANET = @Planet, DESCRIPTION = @Description, IMAGE_PATH = @ImagePath, RECOMMENDED_ENVIRONMENT = @RecommendedEnvironment
                     WHERE PRODUCT_ID = @ProductId";
 
                 using (var command = new SqlCommand(sql, connection))
@@ -277,6 +277,7 @@ namespace ShoppingSite_a.DAO
                     command.Parameters.AddWithValue("@Planet", product.Planet);
                     command.Parameters.AddWithValue("@Description", product.Description);
                     command.Parameters.AddWithValue("@RecommendedEnvironment", product.RecommendedEnvironment);
+                    command.Parameters.AddWithValue("@ImagePath", product.ImagePath);
                     command.Parameters.AddWithValue("@ProductId", product.ProductId);
 
                     connection.Open();

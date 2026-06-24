@@ -60,6 +60,33 @@ namespace ShoppingSite_a.Views.Admin
         protected global::System.Web.UI.WebControls.TextBox txtProductName;
 
         /// <summary>
+        /// imgProduct コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image imgProduct;
+
+        /// <summary>
+        /// fuProductImage コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.FileUpload fuProductImage;
+
+        /// <summary>
+        /// hfImagePath コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hfImagePath;
+
+        /// <summary>
         /// txtPrice コントロール。
         /// </summary>
         /// <remarks>

@@ -33,6 +33,24 @@ namespace ShoppingSite_a
         protected global::ShoppingSite_a.Header ucHeader;
 
         /// <summary>
+        /// valSummary コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.ValidationSummary valSummary;
+
+        /// <summary>
+        /// lblError コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblError;
+
+        /// <summary>
         /// lblMemberId コントロール。
         /// </summary>
         /// <remarks>
@@ -49,6 +67,15 @@ namespace ShoppingSite_a
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtMemberId;
+
+        /// <summary>
+        /// rfvMemberId コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvMemberId;
 
         /// <summary>
         /// lblPassword コントロール。
@@ -69,6 +96,15 @@ namespace ShoppingSite_a
         protected global::System.Web.UI.WebControls.TextBox txtPassword;
 
         /// <summary>
+        /// rfvPassword コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvPassword;
+
+        /// <summary>
         /// btnLogin コントロール。
         /// </summary>
         /// <remarks>
@@ -85,14 +121,5 @@ namespace ShoppingSite_a
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.HyperLink lnkRegister;
-
-        /// <summary>
-        /// lblError コントロール。
-        /// </summary>
-        /// <remarks>
-        /// 自動生成されたフィールド。
-        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblError;
     }
 }

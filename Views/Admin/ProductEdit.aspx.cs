@@ -37,6 +37,9 @@ namespace ShoppingSite_a.Views.Admin
 
                         // ドロップダウンリストの選択状態を合わせる
                         ddlRecommendedEnvironment.SelectedValue = product.RecommendedEnvironment;
+                        // ★追加：画像を表示し、現在のパスをHiddenFieldに保持
+                        imgProduct.ImageUrl = ResolveUrl(product.ImagePath);
+                        hfImagePath.Value = product.ImagePath;
                     }
                     else
                     {
@@ -61,7 +64,19 @@ namespace ShoppingSite_a.Views.Admin
             if (!Page.IsValid) return;
 
             try
-            {
+            {   // ★追加：画像保存のロジック
+                // デフォルトはHiddenFieldに入っている「現在の画像パス」
+                string imagePathToSave = hfImagePath.Value;
+
+                // 新しいファイルがアップロードされた場合のみ差し替える
+                if (fuProductImage.HasFile)
+                {
+                    string fileName = Guid.NewGuid().ToString() + System.IO.Path.GetExtension(fuProductImage.FileName);
+                    string savePath = Server.MapPath("~/Images/") + fileName;
+                    fuProductImage.SaveAs(savePath);
+                    imagePathToSave = "~/Images/" + fileName;
+                }
+
                 // 2. 隠しフィールドから保持しておいた商品IDを復元する
                 int productId = Convert.ToInt32(hfProductId.Value);
 
@@ -75,7 +90,8 @@ namespace ShoppingSite_a.Views.Admin
                 product.Planet = txtPlanet.Text.Trim();
                 product.Description = txtDescription.Text.Trim();
                 product.RecommendedEnvironment = ddlRecommendedEnvironment.SelectedValue;
-
+                // ★追加：画像パスをDTOにセット
+                product.ImagePath = imagePathToSave;
                 // 4. DAOを呼び出してデータベースを更新（UPDATE）する
                 ProductDAO dao = new ProductDAO();
                 dao.Update(product);

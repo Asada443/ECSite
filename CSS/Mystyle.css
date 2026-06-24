@@ -779,3 +779,46 @@ body {
     .complete-actions .btn-detail {
         min-width: 150px;
     }
+
+/* --- 削除確認画面専用スタイル --- */
+.delete-info {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    text-align: left;
+}
+
+    .delete-info p {
+        margin: 10px 0;
+        color: #555;
+    }
+
+.delete-warning {
+    color: #dc3545 !important;/* 警告色の赤 */
+    font-weight: bold;
+    margin: 20px 0;
+    text-align: center;
+}
+
+/* 削除ボタンを赤系にする（既存のbtn-dangerと組み合わせて利用） */
+.btn-danger {
+    background-color: #dc3545 !important;
+}
+
+    .btn-danger:hover {
+        background-color: #c82333 !important;
+    }
+
+
+/* ログインエラーメッセージ用のスタイル */
+/*#lblloginError {
+    display: block;
+    margin-top: 15px;
+    padding: 10px;
+    background-color: #fff3f3;
+    border: 1px solid #ffcdd2;
+    border-radius: 4px;
+    color: #c62828;
+    font-size: 0.9em;
+}*/

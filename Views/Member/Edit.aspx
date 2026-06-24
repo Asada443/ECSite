@@ -24,7 +24,7 @@
             </div>
 
             <div class="form-group">
-                <asp:Label ID="lblPassword" runat="server" Text="新しいパスワード：" />
+                <asp:Label ID="lblPassword" runat="server" Text="パスワード：" />
                 <asp:TextBox ID="txtPassword" runat="server" TextMode="Password" CssClass="input-field" autocomplete="new-password" />
                 <asp:RequiredFieldValidator ID="rfvPassword" runat="server" ControlToValidate="txtPassword" ErrorMessage="パスワードを入力してください" ForeColor="Red" Text="*" Display="Dynamic" />
                 <asp:RegularExpressionValidator ID="revPassword" runat="server" ControlToValidate="txtPassword" 

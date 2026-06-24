@@ -25,7 +25,7 @@
                 </div>
        
                 <div class="form-actions">
-                    <asp:Button ID="btnRegister" runat="server" Text="この内容で登録する" OnClick="btnRegister_Click" CssClass="btn-detail" />
+                    <asp:Button ID="btnRegister" runat="server" Text="この内容で登録する" OnClick="btnRegister_Click" OnClientClick="return confirm('この内容で登録します。よろしいですか？');" CssClass="btn-detail" />
                     <asp:Button ID="btnBack" runat="server" Text="修正する（戻る）" OnClick="btnBack_Click" CssClass="btn-detail" />
                 </div>
             </div>

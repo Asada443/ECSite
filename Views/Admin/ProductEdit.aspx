@@ -7,7 +7,7 @@
     <title>商品情報編集</title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enctype="multipart/form-data">
     <div class="page-center-wrapper">
         <div class="form-card" style="max-width: 600px;">
             <h2>商品情報の編集・詳細</h2>
@@ -24,6 +24,19 @@
                         <asp:TextBox ID="txtProductName" runat="server" CssClass="input-field"></asp:TextBox>
                     </td>
                 </tr>
+
+                <tr>
+            <td class="input-label">現在の画像：</td>
+            <td>
+                <asp:Image ID="imgProduct" runat="server" Width="100px" style="display:block; margin-bottom:5px;" />
+                <asp:FileUpload ID="fuProductImage" runat="server" CssClass="input-field" />
+                <asp:HiddenField ID="hfImagePath" runat="server" />
+            </td>
+        </tr>
+       <%-- ### ポイント解説
+* **`<asp:Image ID="imgProduct" ... />`**: 現在DBに保存されているパスを `ImageUrl` に入れることで、今どんな画像かを表示します。
+* **`<asp:HiddenField ID="hfImagePath" ... />`**: ユーザーが画像を「変更しなかった場合」に、現在保存されているパスを維持するために使います。--%>
+
                 <tr>
                     <td class="input-label">価格：</td>
                     <td>
@@ -64,7 +77,7 @@
             </table>
 
             <div class="register-form-actions">
-                <asp:Button ID="btnUpdate" runat="server" Text="この内容で更新する" CssClass="btn-detail" OnClick="btnUpdate_Click" />
+                <asp:Button ID="btnUpdate" runat="server" Text="この内容で更新する" CssClass="btn-detail" OnClientClick="if (typeof(Page_ClientValidate) == 'function' && !Page_ClientValidate()) { return false; } return confirm('この内容で更新します。よろしいですか？');"  OnClick="btnUpdate_Click"   />
                 <asp:Button ID="btnBack" runat="server" Text="商品管理一覧に戻る" CssClass="btn-detail btn-logout" OnClick="btnBack_Click" CausesValidation="false" />
             </div>
         </div>

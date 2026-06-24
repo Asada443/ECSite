@@ -7,7 +7,7 @@
     <title>商品新規登録</title>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="form1" runat="server" enctype="multipart/form-data">
       
     <div class="page-center-wrapper">
         <div class="form-card" style="max-width: 600px;">
@@ -24,6 +24,12 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="input-label">商品画像：</td>
+                    <td>
+                        <asp:FileUpload ID="fuProductImage" runat="server" CssClass="input-field" />
+                    </td>
+                    </tr>
+                     <tr>
                     <td class="input-label">価格：</td>
                     <td>
                         <asp:TextBox ID="txtPrice" runat="server" CssClass="input-field"></asp:TextBox>
@@ -63,7 +69,7 @@
             </table>
 
             <div class="register-form-actions">
-                <asp:Button ID="btnRegister" runat="server" Text="この内容で登録する" CssClass="btn-detail" OnClick="btnRegister_Click" />
+                <asp:Button ID="btnRegister" runat="server" Text="この内容で登録する" CssClass="btn-detail" OnClientClick="if (typeof(Page_ClientValidate) == 'function' && !Page_ClientValidate()) { return false; } return confirm('この内容で登録します。よろしいですか？');" OnClick="btnRegister_Click" />
                 <asp:Button ID="btnBack" runat="server" Text="商品管理一覧に戻る" CssClass="btn-detail btn-logout" OnClick="btnBack_Click" CausesValidation="false" />
             </div>
         </div>

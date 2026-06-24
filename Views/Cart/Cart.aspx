@@ -51,7 +51,7 @@
             <div class="cart-actions">
                 <asp:Button ID="btnOrder" runat="server" Text="購入へ進む" OnClick="btnOrder_Click" CssClass="btn-detail" style="width:100%; padding: 15px; font-size: 18px;" />
                 <p class="note">※注文完了画面が出るまで商品は確保されません。</p>
-                <a href="/Views/Product/ProductList.aspx">← 商品一覧へ戻る</a>
+                <a href="/Views/Product/ProductList.aspx">← 商品一覧へ</a>
             </div>
         </div>
     </div>
