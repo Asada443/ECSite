@@ -14,7 +14,7 @@
 
         <div class="page-center-wrapper">
             <div class="form-card" style="text-align: center;">
-                <h2>会員情報を削除しました。</h2>
+                <h2>会員情報を削除しました</h2>
                 <div class="form-actions">
                     <asp:Button ID="btnLogin" runat="server" Text="ログイン画面へ" OnClick="btnLogin_Click" CssClass="btn-detail" />
                 </div>

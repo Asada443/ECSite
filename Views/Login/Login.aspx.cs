@@ -19,11 +19,11 @@ namespace ShoppingSite_a
             string userId = txtMemberId.Text;
             string password = txtPassword.Text;
 
-            if (password.Length < 8 || password.Length > 32)
+           /* if (password.Length < 8 || password.Length > 32)
             {
                 lblError.Text = "パスワードは8文字以上32文字以下で入力してください";
                 return;
-            }
+            }*/
 
             MemberDAO dao = new MemberDAO();
             MemberDTO member = dao.Login(userId, password);

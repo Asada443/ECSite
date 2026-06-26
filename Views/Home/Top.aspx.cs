@@ -12,7 +12,7 @@ namespace ShoppingSite_a.Views.Home
         {
             if (!IsPostBack)
             {
-                // 商品表示のためのDAOだけあればいいの
+                // 商品表示のためのDAOだけあればいい
                 ProductDAO productDao = new ProductDAO();
                 MemberDTO loginUser = Session["User"] as MemberDTO;
                 List<ProductDTO> productList = null;
@@ -26,7 +26,7 @@ namespace ShoppingSite_a.Views.Home
                 else
                 {
                     // 未ログイン時の商品抽出
-                    lblListTitle.Text = "大人気！売れ筋の移住枠（残りわずか）";
+                    lblListTitle.Text = "大人気！注目の移住先チケット（残りわずか）";
                     productList = productDao.GetPopularProducts();
                 }
 

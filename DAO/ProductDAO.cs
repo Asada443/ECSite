@@ -61,8 +61,12 @@ namespace ShoppingSite_a.DAO
             if (sortType == "NEW") orderBy = "CREATED_AT DESC";
             else if (sortType == "PRICE_ASC") orderBy = "PRICE ASC";
             else if (sortType == "PRICE_DESC") orderBy = "PRICE DESC";
-            else if (sortType == "NAME_ASC") orderBy = "PRODUCT_NAME ASC";
-            else if (sortType == "NAME_DESC") orderBy = "PRODUCT_NAME DESC";
+            // 日本語辞書順を指定（Japanese_XJIS_100_CI_AS）
+            else if (sortType == "NAME_ASC") orderBy = "PRODUCT_NAME COLLATE Japanese_XJIS_100_CI_AS ASC";
+            else if (sortType == "NAME_DESC") orderBy = "PRODUCT_NAME COLLATE Japanese_XJIS_100_CI_AS DESC";
+            // 在庫順を追加
+            else if (sortType == "STOCK_ASC") orderBy = "STOCK ASC";
+            else if (sortType == "STOCK_DESC") orderBy = "STOCK DESC";
 
             string connStr = ConfigurationManager.ConnectionStrings["ShoppingSiteDB"].ConnectionString;
 

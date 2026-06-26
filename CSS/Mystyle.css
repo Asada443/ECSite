@@ -2,47 +2,76 @@
    共通デザイン設定 (MyStyle.css)
    ========================================== 
 
- --- 1. サイト全体の土台 ---*/ 
+ --- 1. サイト全体の土台 ---*/
 body {
-    background-color: #F8F8F8; /* サイト全体の背景色 */
-    font-family: "Meiryo", sans-serif;  /*文字は読みやすいメイリオ */
-    padding: 20px;  /*全体的な余白 */
-    color: #333;  /*文字色（真っ黒すぎないグレー） */
-    padding-top: 100px;  /*ヘッダーの高さ分だけ下にずらす 
-*/}
+    background-color: #050510; /* 深い紺色（黒に近い青） */
+    background-image: radial-gradient(white, rgba(255,255,255,.2) 2px, transparent 40px), radial-gradient(white, rgba(255,255,255,.15) 1px, transparent 30px);
+    background-size: 550px 550px, 350px 350px; /* 星を散りばめる */
+   /* color: #e0e0e0;*//**/ /* 文字色を白っぽくして読みやすくする */
+    /*font-family: 'Orbitron', sans-serif;*/
 
- /*--- 2. 商品一覧のカード枠 ---*/ 
-.product-card {
-    border: 1px solid #ddd;  /*枠線：薄いグレー */
-    margin: 10px; /* 外側の余白 */
-    padding: 15px;  /*内側の余白 */
-    width: 250px;  /*カードの幅 */
-    float: left;  /*左から並べる */
-    background-color: white;  /*カードの背景色 */
-    border-radius: 8px;  /*角の丸み */
-    text-align: center;  /*文字を中央揃え */
-    border: none;  /*枠線を消す */
-    box-shadow: 0 4px 8px rgba(0,0,0,0.1);  /*ほんのり影をつける */
-    transition: transform 0.2s;  /*マウスを乗せた時にふわっと動かす */
-    min-height: 400px;  /*カードの高さを揃えておく 
-*/    display: flex;
-    flex-direction: column;
-    justify-content: space-between;  /*要素を均等に配置 */
+
+    /*background-color: #F8F8F8;*/ /* サイト全体の背景色 */
+    font-family: "Meiryo", sans-serif;/**/ /*文字は読みやすいメイリオ */
+    padding: 20px; /*全体的な余白 */
+    color: #333;/**/ /*文字色（真っ黒すぎないグレー*/
+    padding-top: 100px; /*ヘッダーの高さ分だけ下にずらす 
+*/
+}
+   @keyframes move-stars {
+    from {
+        background-position: 0 0;
+    }
+
+    to {
+        background-position: 1000px 1000px;
+    }
 }
 
- /*--- 3. ボタン系の共通設定 ---*/ 
+body {
+    animation: move-stars 60s linear infinite;
+}
+
+ /*--- 2. 商品一覧のカード枠 ---*/
+.product-card {
+    background: rgba(20, 30, 50, 0.8); /* 少し透過した青黒いパネル */
+    border: 1px solid #00f2ff; /* シアン色のネオン枠 */
+    box-shadow: 0 0 10px #00f2ff; /* ぼんやり光るエフェクト */
+    color: #fff;
+
+
+
+    /*border: 1px solid #ddd;*/ /*枠線：薄いグレー */
+    margin: 10px; /* 外側の余白 */
+    padding: 15px; /*内側の余白 */
+    width: 250px; /*カードの幅 */
+    float: left; /*左から並べる */
+    /*background-color: white;*/ /*カードの背景色 */
+    border-radius: 8px; /*角の丸み */
+    text-align: center; /*文字を中央揃え */
+    border: none; /*枠線を消す */
+    /*box-shadow: 0 4px 8px rgba(0,0,0,0.1);*/ /*ほんのり影をつける */
+    transition: transform 0.2s; /*マウスを乗せた時にふわっと動かす */
+    min-height: 400px; /*カードの高さを揃えておく */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between; /*要素を均等に配置 */
+}
+
+ /*--- 3. ボタン系の共通設定 ---*/
 .btn-detail {
-    margin-top: 10px;  /*上側の余白 */
-    padding: 0 15px;  /*ボタン内の余白*/ 
-    background-color: #007bff;  /*ボタンの色：青 */
-    color: white;  /*文字の色：白 */
-    border: none;  /*枠線を消す */
-    border-radius: 4px;  /*角を少し丸く */
-    cursor: pointer;  /*マウスを乗せたら指の形にする */
+    margin-top: 10px; /*上側の余白 */
+    padding: 0 15px; /*ボタン内の余白*/
+    background-color: #007bff; /*ボタンの色：青 */
+    color: white; /*文字の色：白 */
+    border: none; /*枠線を消す */
+    border-radius: 4px; /*角を少し丸く */
+    cursor: pointer; /*マウスを乗せたら指の形にする */
     line-height: normal;
     vertical-align: middle;
     display: inline-block;
     height: 40px;
+    box-sizing: border-box;
 }
 
  /*ボタンを並べる親要素（これでガタつきを止める）*/ 
@@ -107,6 +136,7 @@ body {
     align-items: center;
     gap: 15px; /* ボタン同士の間隔を均一に空ける */
     height: 60px
+
     
 }
 
@@ -121,18 +151,18 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
-    height:60px;
-    
+    height: 40px;
+    box-sizing: border-box;
 }
 
 .search-input {
-    padding: 0 10px; 
+    padding: 0 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
- 
-    box-sizing: border-box;  /*枠線を含めてサイズ計算 */
+    box-sizing: border-box; /*枠線を含めてサイズ計算 */
     vertical-align: middle;
-    height: 40px;  /*ボタンと同じ高さにする */
+    height: 45px; /*ボタンと同じ高さにする */
+    box-sizing: border-box;
 }
 
 
@@ -392,6 +422,7 @@ body {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    color:orangered
 }
 
 .product-container {
@@ -406,7 +437,7 @@ body {
 .product-card {
     width: 260px;
     padding: 15px;
-    background-color: white;
+/*    background-color: white;*/
     border-radius: 8px;
     box-shadow: 0 4px 8px rgba(0,0,0,0.1);
     display: flex;
@@ -624,6 +655,7 @@ body {
 
 .top-list-title {
     font-size: 24px;
+    color:orangered;
     margin-bottom: 20px;
     border-bottom: 2px solid #ddd;
     padding-bottom: 10px;
@@ -822,3 +854,71 @@ body {
     color: #c62828;
     font-size: 0.9em;
 }*/
+
+
+/*商品一覧のトップページへリンク*/
+.space-link {
+    color: #ff9900; /* 例えばオレンジ色にする */
+    font-weight: bold;
+}
+
+/*入力欄の注意書き*/
+.input-hint {
+    display: block; /* 改行させる */
+    font-size: 0.8em; /* 少し小さく */
+    color: #888; /* 薄いグレー */
+    margin-top: 2px;
+    margin-bottom: 5px;
+}
+
+
+
+
+/* 登録・編集画面のボタン配置用クラス（.register-form-actions）の中にあるボタンだけを対象にする */
+.register-form-actions .btn-detail {
+    margin-top: 0; /* 余計なmarginを消す */
+}
+
+.register-form-actions .btn-logout {
+    margin-top: 0; /* こちらも揃える */
+}
+
+/* リストをグリッドレイアウトにして左の項目名を揃える */
+.product-info-dl {
+    display: grid;
+    grid-template-columns: 90px 1fr; /* 左の項目幅を90pxで固定 */
+    gap: 5px 10px; /* 縦横の隙間 */
+    margin: 10px 0;
+    font-size: 0.95em;
+}
+
+    .product-info-dl dt {
+        color: #555;
+        font-weight: bold;
+        text-align: right; /* 右寄せにするとよりプロっぽくなります */
+    }
+
+    .product-info-dl dd {
+        margin: 0;
+        color: #333;
+    }
+
+
+.product-list-1 {
+    display: grid;
+    grid-template-columns: 1fr; /* 1列にすることで縦積みになる */
+    gap: 5px;
+    margin: 10px 0;
+}
+
+.product-list-1 dt {
+    font-size: 0.8em; /* 項目名は少し小さく */
+    color: #aaa; /* 薄いグレーにして値を強調 */
+    margin-bottom: -5px;
+}
+
+    .product-list-1 dd {
+        margin: 0 0 5px 0;
+        font-weight: bold; /* 値を太くして目立たせる */
+        font-size: 1.1em;
+    }

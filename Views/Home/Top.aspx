@@ -6,13 +6,14 @@
     <link href="<%= ResolveUrl("~/CSS/MyStyle.css") %>" rel="stylesheet" type="text/css" />
     <title>宇宙移住センター - トップ</title>
 </head>
+
 <body>
     <form id="form1" runat="server">
         <uc:MyHeader runat="server" ID="ucHeader" />
-       
+
 
         <div class="top-page-wrapper">
-        <h3 class="top-list-title"><asp:Label ID="lblListTitle" runat="server" Text="商品一覧"></asp:Label></h3>
+        <h3 class="top-list-title"><asp:Label ID="lblListTitle" runat="server" Text="商品一覧" ></asp:Label></h3>
         <asp:Label ID="lblNoProductsMessage" runat="server" ForeColor="Gray" Visible="false"></asp:Label>
 
         <div class="top-product-grid">
@@ -28,11 +29,28 @@
                             <a href='<%# ResolveUrl("~/Views/Product/ProductDetail.aspx?id=" + Eval("ProductId")) %>' class="top-product-link">
                                 <%# Eval("ProductName") %>
                             </a>
-                            <div class="top-product-info">
+                           <%-- <div class="top-product-info">
                                 移住先の星：<strong><%# Eval("Planet") %></strong><br />
                                 環境：<%# Eval("RecommendedEnvironment") %><br />
-                                価格：<%# String.Format("{0:N0}", Eval("Price")) %> 円 / 残り：<%# Eval("Stock") %> 個
+                                価格：<%# String.Format("{0:N0}", Eval("Price")) %> ウチュウ <br />
+                                残り移住枠：<%# Eval("Stock") %> 個（人数）
+                            </div>--%>
+                            <div class="top-product-info">
+                                   <dl class="product-info-dl">
+                                     <dt>移住先の星：</dt>
+                                     <dd><strong><%# Eval("Planet") %></strong></dd>
+
+                                     <dt>環境：</dt>
+                                     <dd><%# Eval("RecommendedEnvironment") %></dd>
+
+                                     <dt>価格：</dt>
+                                     <dd><%# String.Format("{0:N0}", Eval("Price")) %> ウチュウ</dd>
+
+                                     <dt>残り移住枠：</dt>
+                                     <dd><%# Eval("Stock") %> （人）</dd>
+                                  </dl>
                             </div>
+
                             <div class="top-product-desc">
                                 <%# Eval("Description") %>
                             </div>

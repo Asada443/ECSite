@@ -36,8 +36,8 @@
                             <tr>
                                 <td><%# Eval("ProductId") %></td>
                                 <td><%# Eval("ProductName") %></td>
-                                <td><%# string.Format("{0:C}", Eval("Price")) %></td>
-                                <td><%# Eval("Stock") %> 個</td>
+                                <td><%# string.Format("{0:#,##0}", Eval("Price")) %>ウチュウ</td>
+                                <td><%# Eval("Stock") %> </td>
                                 <td>
                                     <div class="action-buttons">
                                         <asp:Button ID="btnEdit" runat="server" Text="編集" CssClass="btn-detail"

@@ -21,15 +21,15 @@
                 <asp:Repeater ID="rptDetails" runat="server">
                     <ItemTemplate>
                         <div class="complete-item">
-                            ・<%# Eval("ProductName") %> × <%# Eval("Quantity") %>個 
-                            （<%# Eval("SubTotal") %> 円）
+                            ・<%# Eval("ProductName") %> × <%# Eval("Quantity") %>個 （人）
+                            （<%# Eval("SubTotal") %> ウチュウ）
                         </div>
                     </ItemTemplate>
                 </asp:Repeater>
 
                 <hr />
-                <p>消費税： <asp:Label ID="lblTax" runat="server" /> 円</p>
-                <p class="complete-total">合計金額： <asp:Label ID="lblTotal" runat="server" /> 円</p>
+                <p>+消費税： <asp:Label ID="lblTax" runat="server" /> ウチュウ</p>
+                <p class="complete-total">合計金額： <asp:Label ID="lblTotal" runat="server" /> ウチュウ</p>
             </div>
 
             <div class="form-actions">

@@ -16,7 +16,7 @@
         <div class="form-card" style="text-align: center;">
             <h2>会員情報の修正が完了しました</h2>
             <div class="form-actions">
-                <asp:Button ID="btnHome" runat="server" Text="ホーム画面へ戻る" OnClick="btnHome_Click" CssClass="btn-detail" />
+                <asp:Button ID="btnHome" runat="server" Text="マイページへ戻る" OnClick="btnHome_Click" CssClass="btn-detail" />
             </div>
         </div>
     </div>

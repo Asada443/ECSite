@@ -20,8 +20,8 @@
             <div class="detail-info">
                 <p>購入番号：<asp:Label ID="lblOrderId" runat="server"></asp:Label></p>
                 <p>購入日時：<asp:Label ID="lblCreatedAt" runat="server"></asp:Label></p>
-                <p>消費税：<asp:Label ID="lblTax" runat="server"></asp:Label> マイル</p>
-                <p>合計金額：<span class="detail-total"><asp:Label ID="lblTotalPrice" runat="server"></asp:Label> マイル</span></p>
+                <p>+消費税：<asp:Label ID="lblTax" runat="server"></asp:Label> ウチュウ</p>
+                <p>合計金額：<span class="detail-total"><asp:Label ID="lblTotalPrice" runat="server"></asp:Label> ウチュウ</span></p>
             </div>
 
             <hr />
@@ -32,7 +32,7 @@
                     <tr>
                         <th>商品名</th>
                         <th>価格</th>
-                        <th>数量</th>
+                        <th>数量（人数）</th>
                         <th>小計</th>
                     </tr>
                 </thead>
@@ -41,10 +41,10 @@
                         <ItemTemplate>
                             <tr>
                                 <td><%# Eval("ProductName") %></td>
-                                <td><%# Eval("Price", "{0:N0}") %> マイル</td><%--数字を3桁ごとにカンマ区切りにしてね--%>
+                                <td><%# Eval("Price", "{0:N0}") %> ウチュウ</td><%--数字を3桁ごとにカンマ区切りにしてね--%>
                                 <td><%# Eval("Quantity") %></td>
                                 <%-- DTOで自動計算させているSubTotalをバインド --%>
-                                <td><%# Eval("SubTotal", "{0:N0}") %> マイル</td>
+                                <td><%# Eval("SubTotal", "{0:N0}") %> ウチュウ</td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -54,7 +54,7 @@
             <br />
             <%-- 画面遷移ボタン --%>
             <div class="btn-container-detail">
-                <asp:Button ID="btnToHistory" runat="server" Text="購入履歴へ戻る" CssClass="btn-detail" OnClick="btnToHistory_Click" />
+                <asp:Button ID="btnToHistory" runat="server" Text="購入履歴一覧へ戻る" CssClass="btn-detail" OnClick="btnToHistory_Click" />
                 <asp:Button ID="btnToTop" runat="server" Text="トップページへ戻る" CssClass="btn-detail btn-logout" OnClick="btnToTop_Click" />
             </div>
         </div>

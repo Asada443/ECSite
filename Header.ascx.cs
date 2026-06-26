@@ -42,6 +42,16 @@ namespace ShoppingSite_a
             Response.Redirect("~/Views/Product/ProductList.aspx");
         }
 
+        protected void btnCart_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Cart/Cart.aspx");
+        }
+
+        protected void btnRegister_Click(object sender, EventArgs e)
+        {
+            Response.Redirect("~/Views/Member/Register");
+        }
+
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             Response.Redirect("~/Views/Login/Login.aspx");

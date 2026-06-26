@@ -20,19 +20,19 @@
             <div class="detail-info">
                 <h2><asp:Label ID="lblProductName" runat="server" /></h2>
                 
-                <p class="price-display">価格：<span><asp:Label ID="lblPrice" runat="server" />円</span></p>
+                <p class="price-display">価格：<span><asp:Label ID="lblPrice" runat="server" />ウチュウ</span></p>
                 <p>移住先の星：<asp:Label ID="lblPlanet" runat="server" /></p>
-                <p>残り移住枠：<asp:Label ID="lblStock" runat="server" /></p>
+                <p>残り個数（人数）：<asp:Label ID="lblStock" runat="server" /></p>
                 
                 <div class="description-area">
                     <h3>商品説明</h3>
                     <p><asp:Label ID="lblDescription" runat="server" /></p>
                     
-                    <h3>推奨環境</h3>
+                    <h3>この星の環境</h3>
                     <p><asp:Label ID="lblRecommendedEnvironment" runat="server" /></p>
                 </div>
                 <div class="action-area">
-                    数量：<asp:DropDownList ID="ddlQty" runat="server" CssClass="qty-select"></asp:DropDownList>
+                    数量（人数）：<asp:DropDownList ID="ddlQty" runat="server" CssClass="qty-select"></asp:DropDownList>
                     <asp:Button ID="btnCart" runat="server" Text="カートに追加" OnClick="btnCart_Click" CssClass="btn-cart" />
                 </div>
 
@@ -40,7 +40,7 @@
                 <asp:Label ID="lblMessage" runat="server" ForeColor="Green" />
                 
                 <br /><br />
-                <a href="/Views/Product/ProductList.aspx" class="back-link">← 商品一覧へ戻る</a>
+                <a href="/Views/Product/ProductList.aspx" class="back-link">← 商品一覧へ</a>
             </div>
           
         </div>

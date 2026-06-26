@@ -32,7 +32,7 @@
                             <td><%# Eval("CreatedAt", "{0:yyyy/MM/dd HH:mm}") %></td>
                             
                             <%-- 購入金額のバインド --%>
-                            <td><%# Eval("TotalPrice", "{0:N0}") %> マイル</td>
+                            <td><%# Eval("TotalPrice", "{0:N0}") %> ウチュウ</td>
                             
                             <%-- 詳細ボタン (CommandArgumentにOrderIdを仕込む) --%>
                             <td>
@@ -47,7 +47,7 @@
         </table>
 
         <div class="btn-container">
-            <asp:Button ID="btnToTop" runat="server" Text="トップページへ戻る" CssClass="btn-detail btn-logout" OnClick="btnToTop_Click" />
+            <asp:Button ID="btnToTop" runat="server" Text="トップページへ" CssClass="btn-detail btn-logout" OnClick="btnToTop_Click" />
         </div>
 
 

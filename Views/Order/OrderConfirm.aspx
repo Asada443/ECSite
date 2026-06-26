@@ -18,7 +18,7 @@
                 <thead>
                     <tr>
                         <th>商品名</th>
-                        <th>数量</th>
+                        <th>数量（人数）</th>
                         <th>単価</th>
                         <th>小計</th>
                     </tr>
@@ -29,8 +29,8 @@
                             <tr>
                                 <td><%# Eval("ProductName") %></td>
                                 <td><%# Eval("Quantity") %></td>
-                                <td><%# Eval("Price") %> 円</td>
-                                <td><%# Eval("SubTotal") %> 円</td>
+                                <td><%# Eval("Price") %> ウチュウ</td>
+                                <td><%# Eval("SubTotal") %> ウチュウ</td>
                             </tr>
                         </ItemTemplate>
                     </asp:Repeater>
@@ -38,8 +38,8 @@
             </table>
 
             <div class="confirm-summary">
-                <p>消費税 (10%)： <span><asp:Label ID="lblTax" runat="server" /> 円</span></p>
-                <p class="total-line">合計金額： <span><asp:Label ID="lblTotal" runat="server" /> 円</span></p>
+                <p>+消費税 (10%)： <span><asp:Label ID="lblTax" runat="server" /> ウチュウ</span></p>
+                <p class="total-line">合計金額： <span><asp:Label ID="lblTotal" runat="server" /> ウチュウ</span></p>
             </div>
 
             <div class="form-actions">

@@ -24,6 +24,15 @@ namespace ShoppingSite_a
         protected global::System.Web.UI.WebControls.Button btnProductList;
 
         /// <summary>
+        /// btnCart コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnCart;
+
+        /// <summary>
         /// pnlGuestHeader コントロール。
         /// </summary>
         /// <remarks>
@@ -31,6 +40,15 @@ namespace ShoppingSite_a
         /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlGuestHeader;
+
+        /// <summary>
+        /// btnRegister コントロール。
+        /// </summary>
+        /// <remarks>
+        /// 自動生成されたフィールド。
+        /// 変更するには、フィールドの宣言をデザイナー ファイルから分離コード ファイルに移動します。
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnRegister;
 
         /// <summary>
         /// btnLogin コントロール。

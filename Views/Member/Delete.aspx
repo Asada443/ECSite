@@ -26,7 +26,7 @@
                 </p>
 
                 <div class="form-actions">
-                    <asp:Button ID="btnDelete" runat="server" Text="完全に削除する" OnClick="btnDelete_Click" OnClientClick="return confirm('会員データを削除します（元には戻せません。よろしいですか？');" CssClass="btn-detail btn-danger" />
+                    <asp:Button ID="btnDelete" runat="server" Text="完全に削除する" OnClick="btnDelete_Click" OnClientClick="return confirm('会員データを削除します。元には戻せません。よろしいですか？');" CssClass="btn-detail btn-danger" />
                     <asp:Button ID="btnBack" runat="server" Text="戻る" OnClick="btnBack_Click" CssClass="btn-detail" />
                 </div>
             </div>

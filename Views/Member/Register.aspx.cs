@@ -25,7 +25,7 @@ namespace ShoppingSite_a.Member
             MemberDAO dao = new MemberDAO();
             if (dao.Exists(txtUserId.Text))
             {
-                lblError.Text = "この宇宙会員IDは既に使用されています";
+                lblError.Text = "この会員IDは既に使用されています";
                 return;
             }
 

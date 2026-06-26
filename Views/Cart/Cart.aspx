@@ -20,7 +20,7 @@
                     <tr>
                         <th>商品名</th>
                         <th>価格</th>
-                        <th>数量</th>
+                        <th>数量（人数）</th>
                         <th>小計</th>
                         <th>操作</th>
                     </tr>
@@ -30,9 +30,9 @@
                         <ItemTemplate>
                             <tr>
                                 <td><%# Eval("ProductName") %></td>
-                                <td><%# Eval("Price") %> 円</td>
+                                <td><%# Eval("Price") %> ウチュウ</td>
                                 <td><asp:DropDownList ID="ddlQty" runat="server" /></td>
-                                <td><%# Eval("SubTotal") %> 円</td>
+                                <td><%# Eval("SubTotal") %> ウチュウ</td>
                                 <td>
                                     <asp:Button ID="btnDelete" runat="server" Text="削除" CommandName="Delete" CommandArgument='<%# Eval("ProductId") %>' CssClass="btn-danger" />
                                     <asp:HiddenField ID="hfProductId" runat="server" Value='<%# Eval("ProductId") %>' />
@@ -44,13 +44,13 @@
             </table>
 
             <div class="cart-summary">
-                <p>合計金額：<span class="total-price"><asp:Label ID="lblTotal" runat="server" /> 円</span></p>
+                <p>合計金額：<span class="total-price"><asp:Label ID="lblTotal" runat="server" /> ウチュウ</span></p>
                 <asp:Button ID="btnUpdate" runat="server" Text="数量を更新" OnClick="btnUpdate_Click" CssClass="btn-detail" />
             </div>
 
             <div class="cart-actions">
                 <asp:Button ID="btnOrder" runat="server" Text="購入へ進む" OnClick="btnOrder_Click" CssClass="btn-detail" style="width:100%; padding: 15px; font-size: 18px;" />
-                <p class="note">※注文完了画面が出るまで商品は確保されません。</p>
+                <p class="note">※注文完了画面が出るまで商品は確保されません</p>
                 <a href="/Views/Product/ProductList.aspx">← 商品一覧へ</a>
             </div>
         </div>
